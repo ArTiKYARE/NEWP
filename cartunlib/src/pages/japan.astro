@@ -1,0 +1,711 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Японский тюнинг - CarTuningLibrary</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    />
+
+    <!-- Иконки Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <!-- Шрифт Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet"
+    />
+
+    <style>
+        /* Кастомные стили */
+        body {
+            font-family: "Roboto", sans-serif;
+            background: linear-gradient(45deg, #e0e0e0, #d0d0d0);
+            color: #343a40;
+            padding-top: 80px; /* Отступ сверху для навбара */
+        }
+
+        /* Анимированный фоновый узор */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                    217deg,
+                    rgba(255, 99, 71, 0.08),
+                    rgba(255, 99, 71, 0) 70.71%
+                ),
+                linear-gradient(
+                    127deg,
+                    rgba(144, 238, 144, 0.08),
+                    rgba(144, 238, 144, 0) 70.71%
+                ),
+                linear-gradient(
+                    336deg,
+                    rgba(135, 206, 235, 0.08),
+                    rgba(135, 206, 235, 0) 70.71%
+                );
+            opacity: 0.4;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.08) 0px,
+                rgba(255, 255, 255, 0.08) 2px,
+                transparent 2px,
+                transparent 8px
+            );
+            z-index: -1;
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 50px 50px;
+            }
+        }
+
+        /* Карусель */
+        .carousel-item img {
+            height: 500px; /* Уменьшил высоту карусели */
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+
+        .carousel-caption {
+            background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.8),
+                transparent
+            );
+            padding: 2rem;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: left;
+        }
+
+        .carousel-caption h1 {
+            font-size: 2.5rem; /* Уменьшил размер заголовка */
+            font-weight: 700;
+            animation: slideInLeft 1s ease;
+        }
+        .dark-theme {
+            background: #121212;
+            color: #ffffff;
+        }
+
+        .dark-theme .card {
+            background: #1e1e1e;
+            color: #ffffff;
+        }
+
+        .dark-theme .btn-yellow {
+            background-color: #ffc107;
+            color: #000000;
+        }
+
+        .carousel-caption p {
+            font-size: 1.25rem; /* Уменьшил размер текста */
+            animation: slideInRight 1s ease;
+        }
+
+        .carousel-caption .btn {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            padding: 0.75rem 1.5rem;
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Убрал индикаторы карусели */
+        .carousel-indicators {
+            display: none;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 5%;
+            border-radius: 50%;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            opacity: 1;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            filter: invert(1);
+        }
+
+        /* Карточки стран */
+        .flag-card {
+            background: linear-gradient(145deg, #e6e6e6, #ffffff);
+            border-radius: 16px;
+            box-shadow:
+                4px 4px 15px rgba(0, 0, 0, 0.1),
+                -4px -4px 10px rgba(255, 255, 255, 0.7);
+            transition:
+                transform 0.4s ease,
+                box-shadow 0.4s ease;
+        }
+
+        .flag-card:hover {
+            transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+            box-shadow:
+                8px 8px 20px rgba(0, 0, 0, 0.15),
+                -8px -8px 15px rgba(255, 255, 255, 0.8);
+        }
+
+        .flag-card img {
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .flag-card img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Статьи */
+        .article-card {
+            transition: transform 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Кнопки */
+        .btn-yellow {
+            background-color: #ffc107;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .btn-yellow:hover {
+            background-color: #e0a800;
+        }
+
+        /* Полупрозрачный навбар с размытием */
+        header {
+            background: rgba(0, 0, 0, 0.7) !important;
+            backdrop-filter: blur(10px);
+            transition: background 0.3s ease;
+        }
+
+        header:hover {
+            background: rgba(0, 0, 0, 0.8) !important;
+        }
+
+        /* Улучшение читаемости текста */
+        .carousel-caption h1,
+        .carousel-caption p {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Плавные переходы для всех ссылок */
+        a {
+            transition:
+                color 0.3s ease,
+                opacity 0.3s ease;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        /* Улучшение визуальной иерархии */
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+        }
+
+        .display-4 {
+            font-size: 2.5rem;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+        }
+
+        /* Дополнительные hover-эффекты */
+        .btn-yellow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .card {
+            overflow: hidden;
+        }
+
+        .card img {
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Анимации при прокрутке */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition:
+                opacity 0.6s ease,
+                transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Футер */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        footer a {
+            color: #ffc107;
+        }
+
+        footer a:hover {
+            color: #e0a800;
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Дополнительные улучшения */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #ffc107;
+            border-radius: 2px;
+        }
+
+        .bg-gradient {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border-radius: 16px;
+            box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Расширение контента */
+        .wide-container {
+            max-width: 1400px; /* Увеличил максимальную ширину контента */
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        /* Округление краев карусели */
+        .carousel {
+            border-radius: 20px; /* Закругление краев карусели */
+            overflow: hidden; /* Скрываем выступающие части */
+        }
+
+        .carousel-item img {
+            border-radius: 20px; /* Закругление краев изображений */
+        }
+        /* Унификация стилей */
+        .card,
+        .bg-gradient,
+        .flag-card,
+        .article-card {
+            border-radius: 16px; /* Закругление краев */
+            box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1); /* Тень */
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease; /* Плавные переходы */
+        }
+
+        .card:hover,
+        .bg-gradient:hover,
+        .flag-card:hover,
+        .article-card:hover {
+            transform: translateY(-5px); /* Эффект поднятия */
+            box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.15); /* Увеличенная тень */
+        }
+
+        /* Унификация отступов */
+        section {
+            margin-bottom: 4rem; /* Отступ между секциями */
+        }
+
+        .section-title {
+            margin-bottom: 2rem; /* Отступ под заголовками */
+        }
+
+        /* Унификация кнопок */
+        .btn {
+            border-radius: 12px; /* Закругление кнопок */
+            padding: 0.75rem 1.5rem; /* Отступы внутри кнопок */
+            font-size: 1rem; /* Размер текста */
+            transition: all 0.3s ease; /* Плавные переходы */
+        }
+
+        .btn-yellow {
+            background-color: #ffc107;
+            color: white;
+        }
+
+        .btn-yellow:hover {
+            background-color: #e0a800;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        /* Стили для кнопки "Наверх" */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none; /* Скрываем кнопку по умолчанию */
+            z-index: 1000;
+            border-radius: 50%; /* Делаем кнопку круглой */
+            width: 50px;
+            height: 50px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition:
+                opacity 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            opacity: 0.9;
+        }
+        .flag-card {
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .flag-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition:
+                opacity 0.6s ease,
+                transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ffc107;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e0a800;
+        }
+        .flag-card img {
+            width: 100%;
+            aspect-ratio: 3/2; /* Соотношение сторон (например, 3:2) */
+        }
+    </style>
+</head>
+<body>
+  <!-- Шапка (можно использовать тот же header, что и в index.html) -->
+  <header class="fixed-top py-3">
+    <!-- Навигация -->
+  </header>
+
+  <main class="container mt-5 pt-4">
+    <h1 class="text-center section-title mb-5">Японский тюнинг</h1>
+    
+    <div class="row g-4">
+      <!-- Карточка тюнинга 1 -->
+      <div class="col-md-4 fade-in">
+        <div class="card article-card h-100" data-bs-toggle="modal" data-bs-target="#tuningModal" data-tuning="engine">
+          <img src="img/engine-tuning.jpg" class="card-img-top" alt="Тюнинг двигателя">
+          <div class="card-body">
+            <h3 class="card-title fw-bold">Тюнинг двигателя</h3>
+            <p class="card-text">Увеличение мощности и улучшение характеристик двигателя</p>
+            <div class="badge bg-warning text-dark">Производительность</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Карточка тюнинга 2 -->
+      <div class="col-md-4 fade-in">
+        <div class="card article-card h-100" data-bs-toggle="modal" data-bs-target="#tuningModal" data-tuning="suspension">
+          <img src="img/suspension-tuning.jpg" class="card-img-top" alt="Тюнинг подвески">
+          <div class="card-body">
+            <h3 class="card-title fw-bold">Тюнинг подвески</h3>
+            <p class="card-text">Улучшение управляемости и внешнего вида автомобиля</p>
+            <div class="badge bg-primary">Ходовые качества</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Карточка тюнинга 3 -->
+      <div class="col-md-4 fade-in">
+        <div class="card article-card h-100" data-bs-toggle="modal" data-bs-target="#tuningModal" data-tuning="body">
+          <img src="img/body-tuning.jpg" class="card-img-top" alt="Тюнинг кузова">
+          <div class="card-body">
+            <h3 class="card-title fw-bold">Тюнинг кузова</h3>
+            <p class="card-text">Изменение внешнего вида автомобиля</p>
+            <div class="badge bg-success">Внешний вид</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Добавьте больше карточек по аналогии -->
+    </div>
+  </main>
+
+  <!-- Модальное окно с информацией о тюнинге -->
+  <div class="modal fade" id="tuningModal" tabindex="-1" aria-labelledby="tuningModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-3 fw-bold" id="tuningModalLabel">Название тюнинга</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <img id="tuningImage" src="" class="img-fluid rounded mb-3" alt="Тюнинг">
+              <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-warning text-dark" id="tuningCategory">Категория</span>
+                <span class="badge bg-secondary" id="tuningComplexity">Сложность: средняя</span>
+                <span class="badge bg-info" id="tuningPrice">Цена: $$$</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h3 class="fs-4">Описание</h3>
+              <p id="tuningDescription">Описание тюнинга появится здесь...</p>
+              
+              <h3 class="fs-4 mt-4">Преимущества</h3>
+              <ul id="tuningPros" class="list-group list-group-flush mb-3">
+                <!-- Список преимуществ будет заполнен JavaScript -->
+              </ul>
+              
+              <h3 class="fs-4 mt-4">Недостатки</h3>
+              <ul id="tuningCons" class="list-group list-group-flush">
+                <!-- Список недостатков будет заполнен JavaScript -->
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+          <button type="button" class="btn btn-yellow">Заказать консультацию</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Футер (можно использовать тот же, что и в index.html) -->
+  <footer>
+    <!-- Футер -->
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Данные о тюнинге
+    const tuningData = {
+      engine: {
+        title: "Тюнинг двигателя",
+        image: "img/engine-tuning.jpg",
+        category: "Производительность",
+        complexity: "Высокая",
+        price: "$$$$",
+        description: "Тюнинг двигателя включает в себя различные модификации, направленные на увеличение мощности, крутящего момента и улучшение отзывчивости двигателя. Это может включать чип-тюнинг, установку турбонаддува, доработку впускной и выпускной систем.",
+        pros: [
+          "Значительное увеличение мощности",
+          "Улучшение динамики разгона",
+          "Возможность индивидуальной настройки",
+          "Повышение КПД двигателя"
+        ],
+        cons: [
+          "Высокая стоимость качественного тюнинга",
+          "Уменьшение ресурса двигателя при агрессивном тюнинге",
+          "Необходимость доработки других систем автомобиля",
+          "Возможные проблемы с гарантией и законом"
+        ]
+      },
+      suspension: {
+        title: "Тюнинг подвески",
+        image: "img/suspension-tuning.jpg",
+        category: "Ходовые качества",
+        complexity: "Средняя",
+        price: "$$$",
+        description: "Модернизация подвески позволяет улучшить управляемость автомобиля, снизить крены в поворотах и придать автомобилю более агрессивный внешний вид за счет изменения клиренса.",
+        pros: [
+          "Улучшенная управляемость",
+          "Снижение кренов в поворотах",
+          "Спортивный внешний вид",
+          "Возможность регулировки жесткости"
+        ],
+        cons: [
+          "Ухудшение комфорта при жесткой настройке",
+          "Увеличение нагрузки на другие узлы",
+          "Ограничения по дорожному покрытию",
+          "Необходимость точной настройки"
+        ]
+      },
+      body: {
+        title: "Тюнинг кузова",
+        image: "img/body-tuning.jpg",
+        category: "Внешний вид",
+        complexity: "Низкая",
+        price: "$$-$$$",
+        description: "Внешний тюнинг включает установку обвесов, спойлеров, изменение цвета и текстуры кузова, тонировку стекол и другие визуальные модификации.",
+        pros: [
+          "Уникальный внешний вид",
+          "Защита кузова от мелких повреждений",
+          "Широкий выбор вариантов",
+          "Относительно низкая стоимость"
+        ],
+        cons: [
+          "Возможное ухудшение аэродинамики",
+          "Дополнительный вес",
+          "Проблемы с законом при радикальных изменениях",
+          "Сложность возврата к оригинальному виду"
+        ]
+      }
+    };
+
+    // Обработчик открытия модального окна
+    document.querySelectorAll('[data-bs-toggle="modal"]').forEach(card => {
+      card.addEventListener('click', function() {
+        const tuningType = this.getAttribute('data-tuning');
+        const data = tuningData[tuningType];
+        
+        document.getElementById('tuningModalLabel').textContent = data.title;
+        document.getElementById('tuningImage').src = data.image;
+        document.getElementById('tuningCategory').textContent = data.category;
+        document.getElementById('tuningComplexity').textContent = `Сложность: ${data.complexity.toLowerCase()}`;
+        document.getElementById('tuningPrice').textContent = `Цена: ${data.price}`;
+        document.getElementById('tuningDescription').textContent = data.description;
+        
+        // Заполняем преимущества
+        const prosList = document.getElementById('tuningPros');
+        prosList.innerHTML = '';
+        data.pros.forEach(pro => {
+          const li = document.createElement('li');
+          li.className = 'list-group-item';
+          li.innerHTML = `<i class="fas fa-check-circle text-success me-2"></i>${pro}`;
+          prosList.appendChild(li);
+        });
+        
+        // Заполняем недостатки
+        const consList = document.getElementById('tuningCons');
+        consList.innerHTML = '';
+        data.cons.forEach(con => {
+          const li = document.createElement('li');
+          li.className = 'list-group-item';
+          li.innerHTML = `<i class="fas fa-times-circle text-danger me-2"></i>${con}`;
+          consList.appendChild(li);
+        });
+      });
+    });
+
+    // Инициализация анимаций при прокрутке
+    document.addEventListener("DOMContentLoaded", function() {
+      const elements = document.querySelectorAll(".fade-in");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      });
+      elements.forEach((element) => observer.observe(element));
+    });
+  </script>
+</body>
+</html>
+
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <!-- Ваш контент для japan.astro -->
+</Layout>

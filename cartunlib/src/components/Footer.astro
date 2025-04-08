@@ -1,0 +1,36 @@
+---
+// src/components/Footer.astro
+---
+<footer class="bg-black bg-opacity-80 text-white py-4">
+  <div class="container text-center">
+    <!-- Полный оригинальный HTML футера -->
+    <p class="mb-2">© 2024 CarTuningLibrary. Все права защищены.</p>
+    <!-- ... остальное содержимое футера ... -->
+    <div class="social-icons mt-3">
+      <a href="#" class="text-warning"><i class="fab fa-vk"></i></a>
+      <a href="#" class="text-warning"><i class="fab fa-telegram"></i></a>
+      <a href="#" class="text-warning"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+</footer>
+
+<style is:global>
+  /* Полный оригинальный стиль футера */
+  footer {
+    background: rgba(0, 0, 0, 0.9);
+  }
+  footer a {
+    color: #ffc107;
+  }
+  footer a:hover {
+    color: #e0a800;
+  }
+  .social-icons a {
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+    transition: transform 0.3s ease;
+  }
+  .social-icons a:hover {
+    transform: translateY(-5px);
+  }
+</style>

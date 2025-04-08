@@ -1,0 +1,25 @@
+---
+// src/components/CountryCard.astro
+const { country, flag, link } = Astro.props;
+---
+<a href={link} class="card flag-card text-decoration-none text-dark">
+  <img src={flag} class="card-img-top" alt={`Флаг ${country}`} />
+  <div class="card-body text-center">
+    <h3 class="card-title">{country}</h3>
+  </div>
+</a>
+
+<style is:global>
+  .flag-card {
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    border-radius: 16px;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1),
+                -4px -4px 10px rgba(255, 255, 255, 0.7);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .flag-card:hover {
+    transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.15),
+                -8px -8px 15px rgba(255, 255, 255, 0.8);
+  }
+</style>

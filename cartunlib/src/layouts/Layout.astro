@@ -1,0 +1,411 @@
+---
+// src/layouts/Layout.astro
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const { title = "CarTuningLib" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Иконки Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <!-- Шрифт Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="/favicon.jpg" type="image/jpeg" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+
+  <body>
+    <Header title={title} />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+
+    <!-- Bootstrap 5 JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+    <!-- Скрипты можно вынести в отдельный компонент при необходимости -->
+    <script is:inline>
+      // Темная тема
+      document
+        .getElementById("themeToggle")
+        ?.addEventListener("click", function () {
+          document.body.classList.toggle("dark-theme");
+          const isDark = document.body.classList.contains("dark-theme");
+          this.innerHTML = isDark
+            ? '<i class="fas fa-sun"></i> Светлая тема'
+            : '<i class="fas fa-moon"></i> Темная тема';
+          localStorage.setItem("theme", isDark ? "dark" : "light");
+        });
+
+      // При загрузке страницы
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-theme");
+        const toggleBtn = document.getElementById("themeToggle");
+        if (toggleBtn) {
+          toggleBtn.innerHTML = '<i class="fas fa-sun"></i> Светлая тема';
+        }
+      }
+
+      // Кнопка "Наверх"
+      const backToTopButton = document.getElementById("back-to-top");
+      if (backToTopButton) {
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 300) {
+            backToTopButton.style.display = "flex";
+          } else {
+            backToTopButton.style.display = "none";
+          }
+        });
+
+        backToTopButton.addEventListener("click", function () {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+      }
+
+      // Анимации при прокрутке
+      document.addEventListener("DOMContentLoaded", function () {
+        const elements = document.querySelectorAll(".fade-in");
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        });
+        elements.forEach((element) => observer.observe(element));
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  /* Все глобальные стили из вашего файла Layout.astro */
+  body {
+    font-family: "Roboto", sans-serif;
+    background: linear-gradient(45deg, #e0e0e0, #d0d0d0);
+    color: #343a40;
+    padding-top: 80px;
+  }
+
+  /* Остальные стили... */
+  /* Вставьте сюда все остальные стили из вашего Layout.astro */
+  /* Кастомные стили */
+  body {
+    font-family: "Roboto", sans-serif;
+    background: linear-gradient(45deg, #e0e0e0, #d0d0d0);
+    color: #343a40;
+    padding-top: 80px; /* Отступ сверху для навбара */
+  }
+
+  /* Анимированный фоновый узор */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        217deg,
+        rgba(255, 99, 71, 0.08),
+        rgba(255, 99, 71, 0) 70.71%
+      ),
+      linear-gradient(
+        127deg,
+        rgba(144, 238, 144, 0.08),
+        rgba(144, 238, 144, 0) 70.71%
+      ),
+      linear-gradient(
+        336deg,
+        rgba(135, 206, 235, 0.08),
+        rgba(135, 206, 235, 0) 70.71%
+      );
+    opacity: 0.4;
+    z-index: -1;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.08) 0px,
+      rgba(255, 255, 255, 0.08) 2px,
+      transparent 2px,
+      transparent 8px
+    );
+    z-index: -1;
+    animation: patternMove 20s linear infinite;
+  }
+
+  @keyframes patternMove {
+    0% {
+      background-position: 0 0;
+    }
+
+    100% {
+      background-position: 50px 50px;
+    }
+  }
+
+  /* Темная тема */
+  .dark-theme {
+    background: #121212;
+    color: #ffffff;
+  }
+
+  .dark-theme .card {
+    background: #1e1e1e;
+    color: #ffffff;
+  }
+
+  .dark-theme .btn-yellow {
+    background-color: #ffc107;
+    color: #000000;
+  }
+
+  /* Карусель */
+  .carousel-item img {
+    height: 500px;
+    object-fit: cover;
+    filter: brightness(0.7);
+  }
+
+  .carousel-caption {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 2rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: left;
+  }
+
+  .carousel-caption h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    animation: slideInLeft 1s ease;
+  }
+
+  .carousel-caption p {
+    font-size: 1.25rem;
+    animation: slideInRight 1s ease;
+  }
+
+  @keyframes slideInLeft {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInRight {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Карточки */
+  .flag-card,
+  .article-card,
+  .card {
+    border-radius: 16px;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .flag-card:hover,
+  .article-card:hover,
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Кнопки */
+  .btn-yellow {
+    background-color: #ffc107;
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  .btn-yellow:hover {
+    background-color: #e0a800;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Навбар */
+  header {
+    background: rgba(0, 0, 0, 0.7) !important;
+    backdrop-filter: blur(10px);
+    transition: background 0.3s ease;
+  }
+
+  header:hover {
+    background: rgba(0, 0, 0, 0.8) !important;
+  }
+
+  /* Футер */
+  footer {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  footer a {
+    color: #ffc107;
+  }
+
+  footer a:hover {
+    color: #e0a800;
+  }
+
+  /* Анимации при прокрутке */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Заголовки секций */
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #ffc107;
+    border-radius: 2px;
+  }
+
+  /* Контейнеры */
+  .wide-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  /* Кнопка "Наверх" */
+  .back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    z-index: 1000;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .back-to-top:hover {
+    transform: translateY(-5px);
+    opacity: 0.9;
+  }
+
+  /* Кастомный скроллбар */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #ffc107;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #e0a800;
+  }
+  .flag-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flag-card .card-body {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .flag-card img {
+    transition: transform 0.3s ease;
+  }
+
+  .flag-card:hover img {
+    transform: scale(1.05);
+  }
+</style>

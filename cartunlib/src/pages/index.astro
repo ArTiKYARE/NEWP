@@ -1,0 +1,320 @@
+---
+// src/pages/index.astro
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CountryCard from "../components/CountryCard.astro";
+
+// Данные для стран
+const countries = [
+	{ name: "Япония", flag: "/flag/jpn_flag.png", link: "japan.html" },
+	{ name: "США", flag: "/flag/usa_flag.png", link: "usa.html" },
+	{ name: "Россия", flag: "/flag/RU.png", link: "usa.html" },
+	{ name: "Великобритания", flag: "/flag/uk_flag.png", link: "usa.html" },
+	{ name: "Германия", flag: "/flag/jrm_flag.png", link: "usa.html" },
+	{ name: "Южная корея корея", flag: "/flag/nk_flag.png", link: "usa.html" },
+	{ name: "Италия", flag: "/flag/italia_flag.png", link: "usa.html" },
+	{ name: "Франция", flag: "/flag/fr_flag.png", link: "usa.html" },
+];
+
+// Данные для статей
+const articles = [
+	{
+		title: "Будущее электрического тюнинга",
+		image: "/index/body/st1.png",
+		badge: "Новое",
+		views: 0,
+		link: "#",
+	},
+	{
+		title: "Будущее электрического тюнинга",
+		image: "/index/body/st1.png",
+		badge: "Новое",
+		views: 0,
+		link: "#",
+	},
+	{
+		title: "Будущее электрического тюнинга",
+		image: "/index/body/st1.png",
+		badge: "Новое",
+		views: 0,
+		link: "#",
+	},
+];
+---
+
+<Layout title="Главная - CarTuningLibrary">
+	<Header />
+
+	<!-- Основной контент -->
+	<main>
+		<!-- Карусель (полная оригинальная версия) -->
+		<section id="home" class="mt-5">
+			<div class="wide-container">
+				<div
+					id="carouselExample"
+					class="carousel slide"
+					data-bs-ride="carousel"
+				>
+					<div class="carousel-indicators">
+						<button
+							type="button"
+							data-bs-target="#carouselExample"
+							data-bs-slide-to="0"
+							class="active"></button>
+						<button
+							type="button"
+							data-bs-target="#carouselExample"
+							data-bs-slide-to="1"></button>
+						<button
+							type="button"
+							data-bs-target="#carouselExample"
+							data-bs-slide-to="2"></button>
+					</div>
+
+					<div class="carousel-inner">
+						<!-- Слайд 1 -->
+						<div
+							class="carousel-item active"
+							data-bs-interval="5000"
+						>
+							<img
+								src="/index/karusel/k1.jpg"
+								class="d-block w-100"
+								alt="Тюнинг"
+							/>
+							<div class="carousel-caption">
+								<h1 class="display-4 fw-bold">
+									Добро пожаловать в мир тюнинга
+								</h1>
+								<p class="lead">
+									Уникальные решения для стиля и
+									производительности
+								</p>
+								<a href="#tuning" class="btn btn-yellow"
+									>Посмотреть тюнинги</a
+								>
+							</div>
+							
+							
+						</div>
+
+						<div class="carousel-inner">
+							<!-- Слайд 1 -->
+							<div
+								class="carousel-item active"
+								data-bs-interval="5000"
+							>
+								<img
+									src="/index/karusel/k1.jpg"
+									class="d-block w-100"
+									alt="Тюнинг"
+								/>
+								<div class="carousel-caption">
+									<h1 class="display-4 fw-bold">
+										Добро пожаловать в мир тюнинга
+									</h1>
+									<p class="lead">
+										Уникальные решения для стиля и
+										производительности
+									</p>
+									<a href="#tuning" class="btn btn-yellow"
+										>Посмотреть тюнинги</a
+									>
+								</div>
+								
+								
+							</div>
+
+							<div class="carousel-inner">
+								<!-- Слайд 1 -->
+								<div
+									class="carousel-item active"
+									data-bs-interval="5000"
+								>
+									<img
+										src="/index/karusel/k1.jpg"
+										class="d-block w-100"
+										alt="Тюнинг"
+									/>
+									<div class="carousel-caption">
+										<h1 class="display-4 fw-bold">
+											Добро пожаловать в мир тюнинга
+										</h1>
+										<p class="lead">
+											Уникальные решения для стиля и
+											производительности
+										</p>
+										<a href="#tuning" class="btn btn-yellow"
+											>Посмотреть тюнинги</a
+										>
+									</div>
+									
+									
+								</div>
+
+						<!-- Остальные слайды -->
+					</div>
+
+					<!-- Кнопки управления -->
+					<button
+						class="carousel-control-prev"
+						type="button"
+						data-bs-target="#carouselExample"
+						data-bs-slide="prev"
+					>
+						<span
+							class="carousel-control-prev-icon"
+							aria-hidden="true"></span>
+					</button>
+					<button
+						class="carousel-control-next"
+						type="button"
+						data-bs-target="#carouselExample"
+						data-bs-slide="next"
+					>
+						<span
+							class="carousel-control-next-icon"
+							aria-hidden="true"></span>
+					</button>
+				</div>
+			</div>
+		</section>
+
+		<!-- Секция "О проекте" -->
+		<section class="wide-container my-5">
+			<div class="row align-items-stretch">
+				<div class="col-lg-6">
+					<div class="p-4 bg-gradient rounded shadow h-100">
+						<h2 class="section-title">О проекте</h2>
+						<!-- Оригинальный текст -->
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="h-100 overflow-hidden rounded shadow">
+						<img
+							src="/index/body/o_proecte.jpg"
+							class="img-fluid w-100 h-100 object-fit-cover"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Выбор страны -->
+		<section class="wide-container my-5">
+			<h2 class="text-center section-title">Выберите страну</h2>
+			<div class="row g-4">
+			  {countries.map((country) => (
+				<div class="col-md-3 d-flex">
+				  <a href={country.link} class="card flag-card text-decoration-none text-dark w-100">
+					<div style="height: 150px; overflow: hidden;">
+					  <img 
+						src={country.flag} 
+						class="card-img-top h-100 object-fit-cover" 
+						alt={`Флаг ${country.name}`}
+						style="border-radius: 12px 12px 0 0;"
+					  />
+					</div>
+					<div class="card-body text-center d-flex flex-column">
+					  <h3 class="card-title mb-0">{country.name}</h3>
+					</div>
+				  </a>
+				</div>
+			  ))}
+			</div>
+		  </section>
+
+		<!-- Новостные плашки -->
+		<section class="wide-container my-5">
+			<h2 class="text-center section-title">Последние статьи</h2>
+			<div class="row g-4">
+				{
+					articles.map((article) => (
+						<div class="col-md-4">
+							<div class="card article-card">
+								<img
+									src={article.image}
+									class="card-img-top"
+									alt={article.title}
+								/>
+								<div class="card-body">
+									<span class="badge bg-warning text-dark mb-2">
+										{article.badge}
+									</span>
+									<h3 class="card-title fw-bold">
+										{article.title}
+									</h3>
+									<p class="text-muted">
+										Просмотров: <span>{article.views}</span>
+									</p>
+									<a
+										href={article.link}
+										class="btn btn-yellow"
+									>
+										Читать далее →
+									</a>
+								</div>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</section>
+	</main>
+
+	<!-- Кнопки и скрипты -->
+	<button id="back-to-top" class="btn btn-yellow btn-lg back-to-top">
+		<i class="fas fa-arrow-up"></i>
+	</button>
+
+	<button id="themeToggle" class="btn btn-outline-secondary">
+		<i class="fas fa-moon"></i> Темная тема
+	</button>
+</Layout>
+
+<!-- Локальные скрипты -->
+<script is:inline>
+	// Оригинальные скрипты без изменений
+	document.addEventListener("DOMContentLoaded", function () {
+		// Скрипт для темы
+		document
+			.getElementById("themeToggle")
+			.addEventListener("click", function () {
+				document.body.classList.toggle("dark-theme");
+				// ... остальной код
+			});
+
+		// Скрипт для кнопки "Наверх"
+		const backToTopButton = document.getElementById("back-to-top");
+		window.addEventListener("scroll", function () {
+			if (window.scrollY > 300) {
+				backToTopButton.style.display = "flex";
+			} else {
+				backToTopButton.style.display = "none";
+			}
+		});
+
+		// Остальные скрипты...
+	});
+</script>
+
+<style scoped>
+	/* Локальные стили для этой страницы */
+	.carousel-caption h1 {
+		animation: slideInLeft 1s ease;
+	}
+
+	@keyframes slideInLeft {
+		0% {
+			transform: translateX(-100%);
+			opacity: 0;
+		}
+		100% {
+			transform: translateX(0);
+			opacity: 1;
+		}
+	}
+
+	/* Остальные анимации... */
+</style>
