@@ -1,6 +1,32 @@
 ---
 // src/components/BackToTop.astro
 ---
+
 <button id="back-to-top" class="btn btn-yellow btn-lg back-to-top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<script is:inline>
+  // Оригинальные скрипты без изменений
+  document.addEventListener("DOMContentLoaded", function () {
+    // Скрипт для темы
+    document
+      .getElementById("themeToggle")
+      .addEventListener("click", function () {
+        document.body.classList.toggle("dark-theme");
+        // ... остальной код
+      });
+
+    // Скрипт для кнопки "Наверх"
+    const backToTopButton = document.getElementById("back-to-top");
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 300) {
+        backToTopButton.style.display = "flex";
+      } else {
+        backToTopButton.style.display = "none";
+      }
+    });
+
+    // Остальные скрипты...
+  });
+</script>
