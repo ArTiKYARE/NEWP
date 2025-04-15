@@ -1,0 +1,182 @@
+---
+// src/pages/contacts.astro
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import BackToTop from "../components/BackToTop.astro";
+
+const contacts = {
+    name: "Ковалев Константин",
+    address: "27-я Северная ул., 69",
+    phone: "+7 (950) 336-71-74",
+    email: "crahercenter@gmail.com",
+    social: {
+        vk: "https://vk.com/zzz_400",
+        telegram: "https://t.me/artikyare",
+    },
+};
+---
+
+<Layout title="Контакты - CarTuningLibrary">
+    <Header />
+
+    <main class="container mt-5 pt-4">
+        <section class="fade-in">
+            <h1 class="text-center section-title mb-5">Контакты</h1>
+
+            <div class="row">
+                <div class="col-lg-6 mb-5">
+                    <div class="bg-gradient p-4 rounded-3 shadow h-100">
+                        <h2 class="mb-4">Контактная информация</h2>
+
+                        <div class="contact-info">
+                            <div class="d-flex align-items-center mb-4">
+                                <i
+                                    class="fas fa-user-circle me-3 fs-4 text-warning"
+                                ></i>
+                                <div>
+                                    <h5 class="mb-0">Имя</h5>
+                                    <p class="mb-0 fs-5">{contacts.name}</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center mb-4">
+                                <i
+                                    class="fas fa-map-marker-alt me-3 fs-4 text-warning"
+                                ></i>
+                                <div>
+                                    <h5 class="mb-0">Адрес</h5>
+                                    <p class="mb-0 fs-5">{contacts.address}</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center mb-4">
+                                <i
+                                    class="fas fa-phone-alt me-3 fs-4 text-warning"
+                                ></i>
+                                <div>
+                                    <h5 class="mb-0">Телефон</h5>
+                                    <a
+                                        href={`tel:${contacts.phone.replace(/\D/g, "")}`}
+                                        class="text-decoration-none fs-5"
+                                    >
+                                        {contacts.phone}
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center mb-4">
+                                <i
+                                    class="fas fa-envelope me-3 fs-4 text-warning"
+                                ></i>
+                                <div>
+                                    <h5 class="mb-0">Email</h5>
+                                    <a
+                                        href={`mailto:${contacts.email}`}
+                                        class="text-decoration-none fs-5"
+                                    >
+                                        {contacts.email}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mb-5">
+                    <div class="bg-gradient p-4 rounded-3 shadow h-100">
+                        <h2 class="mb-4">Социальные сети</h2>
+
+                        <div class="social-links">
+                            <a
+                                href={contacts.social.vk}
+                                target="_blank"
+                                class="btn btn-outline-primary mb-3 w-100"
+                            >
+                                <i class="fab fa-vk me-2"></i> ВКонтакте
+                            </a>
+
+                            <a
+                                href={contacts.social.telegram}
+                                target="_blank"
+                                class="btn btn-outline-info mb-3 w-100"
+                            >
+                                <i class="fab fa-telegram me-2"></i> Telegram
+                            </a>
+                        </div>
+
+                        <h2 class="mt-5 mb-4">Форма обратной связи</h2>
+                        <form>
+                            <div class="mb-3">
+                                <label for="name" class="form-label"
+                                    >Ваше имя</label
+                                >
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="name"
+                                    required
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label"
+                                    >Email</label
+                                >
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="email"
+                                    required
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label"
+                                    >Сообщение</label
+                                >
+                                <textarea
+                                    class="form-control"
+                                    id="message"
+                                    rows="4"
+                                    required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-yellow w-100">
+                                <i class="fas fa-paper-plane me-2"></i> Отправить
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient p-4 rounded-3 shadow fade-in">
+                <h2 class="mb-4">Как нас найти</h2>
+                <div class="ratio ratio-16x9">
+                    <iframe
+                        src="https://yandex.ru/map-widget/v1/?um=constructor%3A1a2b3c4d5e6f7g8h9i0j&source=constructor"
+                        frameborder="0"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <BackToTop />
+
+    <style scoped>
+        .contact-info i {
+            width: 30px;
+            text-align: center;
+        }
+
+        .social-links .btn {
+            transition: all 0.3s ease;
+        }
+
+        .social-links .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        iframe {
+            border-radius: 12px;
+        }
+    </style>
+</Layout>
