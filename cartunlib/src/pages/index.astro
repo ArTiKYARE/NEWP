@@ -4,14 +4,13 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import BackToTop from "../components/BackToTop.astro";
 import Footer from "../components/Footer.astro";
-import CountryCard from "../components/CountryCard.astro";
 
 // Данные для стран
 const countries = [
 	{
 		name: "Япония",
-		flag: "/flags/jpn_flag.png", // Поправил путь на /flags/
-		link: "/japan", // Убрал .html для чистых URL
+		flag: "/flags/jpn_flag.png",
+		link: "/japan",
 	},
 	{
 		name: "США",
@@ -30,17 +29,17 @@ const countries = [
 	},
 	{
 		name: "Германия",
-		flag: "/flags/de_flag.png", // Исправил jrm_flag на общепринятый de_flag
+		flag: "/flags/de_flag.png",
 		link: "/germany",
 	},
 	{
-		name: "Южная Корея", // Исправил написание
-		flag: "/flags/kr_flag.png", // Исправил nk_flag на kr (Южная Корея)
+		name: "Южная Корея",
+		flag: "/flags/kr_flag.png",
 		link: "/south-korea",
 	},
 	{
 		name: "Италия",
-		flag: "/flags/it_flag.png", // Италия обычно it
+		flag: "/flags/it_flag.png",
 		link: "/italy",
 	},
 	{
@@ -50,28 +49,47 @@ const countries = [
 	},
 ];
 
-// Данные для статей
 const articles = [
 	{
-		title: "Будущее электрического тюнинга",
-		image: "/index/body/st1.png",
-		badge: "Новое",
-		views: 0,
-		link: "#",
+		id: "1",
+		title: "Эволюция двигателя 2JZ-GTE",
+		image: "/news/indexnews/2JZ-GTE.png",
+		excerpt: "Полный разбор легендарного двигателя Toyota",
+		category: "Технологии",
+		modal: true,
+		content: `
+      <img src="/news/indexnews/2JZ-GTE.png" class="img-fluid mb-4" alt="2JZ-GTE">
+      <h2>Технические особенности</h2>
+      <p>Двигатель 2JZ-GTE по праву считается одним из самых надёжных и перспективных для тюнинга...</p>
+      <h2>История создания</h2>
+      <p>Разработан в 1991 году для Toyota Aristo и Supra MKIV...</p>
+    `,
 	},
 	{
-		title: "Будущее электрического тюнинга",
-		image: "/index/body/st1.png",
-		badge: "Новое",
-		views: 0,
-		link: "#",
+		id: "2",
+		title: "История Nissan Skyline GT-R",
+		image: "/news/indexnews/Nissan Skyline GT-R.png",
+		excerpt: "Как скромный седан превратился в суперкар",
+		category: "История",
+		modal: true,
+		content: `
+      <img src="/news/indexnews/Nissan Skyline GT-R.png" class="img-fluid mb-4" alt="Skyline GT-R">
+      <h2>От истоков до современности</h2>
+      <p>История Skyline началась в 1957 году...</p>
+    `,
 	},
 	{
-		title: "Будущее электрического тюнинга",
-		image: "/index/body/st1.png",
-		badge: "Новое",
-		views: 0,
-		link: "#",
+		id: "3",
+		title: "10 лучших JDM-автомобилей для дрифта",
+		image: "/news/indexnews/JDM дрифт.png",
+		excerpt: "От AE86 до неожиданных вариантов для начинающих",
+		category: "Тюнинг",
+		modal: true,
+		content: `
+      <img src="/news/indexnews/JDM дрифт.png" class="img-fluid mb-4" alt="JDM дрифт">
+      <h2>Топ-10 машин для дрифта</h2>
+      <p>Для настоящего дрифта нужен не просто задний привод, а особый характер автомобиля...</p>
+    `,
 	},
 ];
 ---
@@ -79,9 +97,8 @@ const articles = [
 <Layout title="Главная - CarTuningLibrary">
 	<Header />
 
-	<!-- Основной контент -->
 	<main>
-		<!-- Карусель (полная оригинальная версия) -->
+		<!-- Карусель -->
 		<section id="home" class="mt-5">
 			<div class="wide-container">
 				<div
@@ -130,245 +147,306 @@ const articles = [
 							</div>
 						</div>
 
-						<div class="carousel-inner">
-							<!-- Слайд 2 -->
-							<div class="carousel-item" data-bs-interval="5000">
-								<img
-									src="/index/karusel/k2.jpg"
-									class="d-block w-100"
-									alt="Тюнинг"
-								/>
-								<div class="carousel-caption">
-									<h1 class="display-4 fw-bold">
-										Добро пожаловать в мир тюнинга
-									</h1>
-									<p class="lead">
-										Уникальные решения для стиля и
-										производительности
-									</p>
-									<a href="#tuning" class="btn btn-yellow"
-										>Посмотреть тюнинги</a
-									>
-								</div>
-							</div>
-
-							<div class="carousel-inner">
-								<!-- Слайд 3 -->
-								<div
-									class="carousel-item"
-									data-bs-interval="5000"
+						<!-- Слайд 2 -->
+						<div class="carousel-item" data-bs-interval="5000">
+							<img
+								src="/index/karusel/k2.jpg"
+								class="d-block w-100"
+								alt="Тюнинг"
+							/>
+							<div class="carousel-caption">
+								<h1 class="display-4 fw-bold">
+									Добро пожаловать в мир тюнинга
+								</h1>
+								<p class="lead">
+									Уникальные решения для стиля и
+									производительности
+								</p>
+								<a href="#tuning" class="btn btn-yellow"
+									>Посмотреть тюнинги</a
 								>
-									<img
-										src="/index/karusel/k3.jpg"
-										class="d-block w-100"
-										alt="Тюнинг"
-									/>
-									<div class="carousel-caption">
-										<h1 class="display-4 fw-bold">
-											Добро пожаловать в мир тюнинга
-										</h1>
-										<p class="lead">
-											Уникальные решения для стиля и
-											производительности
-										</p>
-										<a href="#tuning" class="btn btn-yellow"
-											>Посмотреть тюнинги</a
-										>
-									</div>
-								</div>
-
-								<!-- Остальные слайды -->
 							</div>
+						</div>
 
-							<!-- Кнопки управления -->
-							<button
-								class="carousel-control-prev"
-								type="button"
-								data-bs-target="#carouselExample"
-								data-bs-slide="prev"
-							>
-								<span
-									class="carousel-control-prev-icon"
-									aria-hidden="true"></span>
-							</button>
-							<button
-								class="carousel-control-next"
-								type="button"
-								data-bs-target="#carouselExample"
-								data-bs-slide="next"
-							>
-								<span
-									class="carousel-control-next-icon"
-									aria-hidden="true"></span>
-							</button>
+						<!-- Слайд 3 -->
+						<div class="carousel-item" data-bs-interval="5000">
+							<img
+								src="/index/karusel/k3.jpg"
+								class="d-block w-100"
+								alt="Тюнинг"
+							/>
+							<div class="carousel-caption">
+								<h1 class="display-4 fw-bold">
+									Добро пожаловать в мир тюнинга
+								</h1>
+								<p class="lead">
+									Уникальные решения для стиля и
+									производительности
+								</p>
+								<a href="#tuning" class="btn btn-yellow"
+									>Посмотреть тюнинги</a
+								>
+							</div>
 						</div>
 					</div>
+
+					<button
+						class="carousel-control-prev"
+						type="button"
+						data-bs-target="#carouselExample"
+						data-bs-slide="prev"
+					>
+						<span
+							class="carousel-control-prev-icon"
+							aria-hidden="true"></span>
+					</button>
+					<button
+						class="carousel-control-next"
+						type="button"
+						data-bs-target="#carouselExample"
+						data-bs-slide="next"
+					>
+						<span
+							class="carousel-control-next-icon"
+							aria-hidden="true"></span>
+					</button>
 				</div>
-
-				<!-- Секция "О проекте" -->
-				<section class="wide-container my-5">
-					<div class="row align-items-stretch">
-						<div class="col-lg-6">
-							<div class="p-4 bg-gradient rounded shadow h-100">
-								<h2 class="section-title">О проекте</h2>
-								<p>
-									CarTuningLib — это ваш универсальный гид в
-									мире автомобильного тюнинга Мы не просто
-									собираем информацию — мы создаем сообщество
-									энтузиастов, профессионалов и новичков,
-									которые ценят индивидуальность и техническое
-									совершенство автомобилей.
-								</p>
-								<p>
-									🔧 Что мы предлагаем? История тюнинга – от
-									первых кастомных моделей до современных
-									гиперкаров. Узнайте, как зарождались
-									культовые стили, такие как JDM (Japanese
-									Domestic Market), Euro Tuning, Lowriders,
-									Rat Look и многие другие. Современные
-									технологии – разбираемся в чип-тюнинге,
-									аэродинамических доработках, адаптивной
-									подвеске и электрификации двигателей.
-									Культурные особенности – почему в Германии
-									любят «чистый» OEM-стиль, а в США популярны
-									маслкары с огромными турбинами? Как аниме и
-									поп-культура повлияли на японский тюнинг?
-									Практические руководства – от выбора дисков
-									и обвесов до сложных доработок двигателя.
-								</p>
-								<p>
-									🚗 Стили, которые мы исследуем: VIP-стиль
-									(Япония) – роскошь, низкие sedan’ы и
-									хромированные диски. Bosozoku –
-									экстремальные обвесы, выхлопные трубы «в
-									потолок» и бунтарский дух. Hellaflush –
-									агрессивный развал, посадка «в пол» и
-									идеальные пропорции. Resto-mod –
-									классические авто с современной начинкой.
-									Cyberpunk / Hi-Tech – неоновые подсветки,
-									углерод и цифровые приборные панели.
-								</p>
-								<p>
-									🌍 Тюнинг без границ Мы сравниваем подходы
-									мастеров из разных стран: Япония – акцент на
-									детализацию и баланс. Германия – инженерная
-									точность и производительность. США –
-									мощность, дрэг-рейсинг и уникальные
-									кастом-проекты. Россия и СНГ – смелые
-									эксперименты и адаптация трендов под местные
-									условия.
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="h-100 overflow-hidden rounded shadow">
-								<img
-									src="/index/body/o_proecte.jpg"
-									class="img-fluid w-100 h-100 object-fit-cover"
-								/>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<!-- Выбор страны -->
-				<section class="wide-container my-5">
-					<h2 class="text-center section-title">Выберите страну</h2>
-					<div class="row g-4">
-						{
-							countries.map((country) => (
-								<div class="col-md-3 d-flex">
-									<a
-										href={country.link}
-										class="card flag-card text-decoration-none text-dark w-100"
-									>
-										<div style="height: 150px; overflow: hidden;">
-											<img
-												src={country.flag}
-												class="card-img-top h-100 object-fit-cover"
-												alt={`Флаг ${country.name}`}
-												style="border-radius: 12px 12px 0 0;"
-											/>
-										</div>
-										<div class="card-body text-center d-flex flex-column">
-											<h3 class="card-title mb-0">
-												{country.name}
-											</h3>
-										</div>
-									</a>
-								</div>
-							))
-						}
-					</div>
-				</section>
-
-				<!-- Новостные плашки -->
-				<section class="wide-container my-5">
-					<h2 class="text-center section-title">Последние статьи</h2>
-					<div class="row g-4">
-						{
-							articles.map((article) => (
-								<div class="col-md-4">
-									<div class="card article-card">
-										<img
-											src={article.image}
-											class="card-img-top"
-											alt={article.title}
-										/>
-										<div class="card-body">
-											<span class="badge bg-warning text-dark mb-2">
-												{article.badge}
-											</span>
-											<h3 class="card-title fw-bold">
-												{article.title}
-											</h3>
-											<p class="text-muted">
-												Просмотров:{" "}
-												<span>{article.views}</span>
-											</p>
-											<a
-												href={article.link}
-												class="btn btn-yellow"
-											>
-												Читать далее →
-											</a>
-										</div>
-									</div>
-								</div>
-							))
-						}
-					</div>
-				</section>
 			</div>
-
-			<!-- Кнопки и скрипты -->
-			<button id="back-to-top" class="btn btn-yellow btn-lg back-to-top">
-				<i class="fas fa-arrow-up"></i>
-			</button>
-
-			<button id="themeToggle" class="btn btn-outline-secondary">
-				<i class="fas fa-moon"></i> Темная тема
-			</button>
 		</section>
 
-		<style scoped>
-			/* Локальные стили для этой страницы */
-			.carousel-caption h1 {
-				animation: slideInLeft 1s ease;
-			}
+		<!-- Секция "О проекте" -->
+		<section class="wide-container my-5">
+			<div class="row align-items-stretch">
+				<div class="col-lg-6">
+					<div class="p-4 bg-gradient rounded shadow h-100">
+						<h2 class="section-title">О проекте</h2>
+						<p>
+							CarTuningLib — это ваш универсальный гид в мире
+							автомобильного тюнинга Мы не просто собираем
+							информацию — мы создаем сообщество энтузиастов,
+							профессионалов и новичков, которые ценят
+							индивидуальность и техническое совершенство
+							автомобилей.
+						</p>
+						<p>
+							🔧 Что мы предлагаем? История тюнинга – от первых
+							кастомных моделей до современных гиперкаров.
+							Узнайте, как зарождались культовые стили, такие как
+							JDM (Japanese Domestic Market), Euro Tuning,
+							Lowriders, Rat Look и многие другие. Современные
+							технологии – разбираемся в чип-тюнинге,
+							аэродинамических доработках, адаптивной подвеске и
+							электрификации двигателей. Культурные особенности –
+							почему в Германии любят «чистый» OEM-стиль, а в США
+							популярны маслкары с огромными турбинами? Как аниме
+							и поп-культура повлияли на японский тюнинг?
+							Практические руководства – от выбора дисков и
+							обвесов до сложных доработок двигателя.
+						</p>
+						<p>
+							🚗 Стили, которые мы исследуем: VIP-стиль (Япония) –
+							роскошь, низкие sedan’ы и хромированные диски.
+							Bosozoku – экстремальные обвесы, выхлопные трубы «в
+							потолок» и бунтарский дух. Hellaflush – агрессивный
+							развал, посадка «в пол» и идеальные пропорции.
+							Resto-mod – классические авто с современной
+							начинкой. Cyberpunk / Hi-Tech – неоновые подсветки,
+							углерод и цифровые приборные панели.
+						</p>
+						<p>
+							🌍 Тюнинг без границ Мы сравниваем подходы мастеров
+							из разных стран: Япония – акцент на детализацию и
+							баланс. Германия – инженерная точность и
+							производительность. США – мощность, дрэг-рейсинг и
+							уникальные кастом-проекты. Россия и СНГ – смелые
+							эксперименты и адаптация трендов под местные
+							условия.
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="h-100 overflow-hidden rounded shadow">
+						<img
+							src="/index/body/o_proecte.jpg"
+							class="img-fluid w-100 h-100 object-fit-cover"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
 
-			@keyframes slideInLeft {
-				0% {
-					transform: translateX(-100%);
-					opacity: 0;
+		<!-- Выбор страны -->
+		<section class="wide-container my-5">
+			<h2 class="text-center section-title">Выберите страну</h2>
+			<div class="row g-4">
+				{
+					countries.map((country) => (
+						<div class="col-md-3 d-flex">
+							<a
+								href={country.link}
+								class="card flag-card text-decoration-none text-dark w-100"
+							>
+								<div style="height: 150px; overflow: hidden;">
+									<img
+										src={country.flag}
+										class="card-img-top h-100 object-fit-cover"
+										alt={`Флаг ${country.name}`}
+										style="border-radius: 12px 12px 0 0;"
+									/>
+								</div>
+								<div class="card-body text-center d-flex flex-column">
+									<h3 class="card-title mb-0">
+										{country.name}
+									</h3>
+								</div>
+							</a>
+						</div>
+					))
 				}
-				100% {
-					transform: translateX(0);
-					opacity: 1;
-				}
-			}
+			</div>
+		</section>
 
-			/* Остальные анимации... */
-		</style>
+		<!-- Секция статей -->
+		<section class="wide-container my-5 fade-in">
+			<h2 class="section-title text-center mb-5">Последние статьи</h2>
+
+			<div class="row g-4" id="articlesContainer">
+				{
+					articles.map((article) => (
+						<div
+							class="col-lg-4 col-md-6 article-item"
+							data-category={article.category}
+						>
+							<div class="card article-card h-100">
+								<img
+									src={article.image}
+									class="card-img-top"
+									alt={article.title}
+									loading="lazy"
+								/>
+								<div class="card-body">
+									<span class="badge bg-warning text-dark mb-3">
+										{article.category}
+									</span>
+									<h3 class="card-title">{article.title}</h3>
+									<p class="card-text">{article.excerpt}</p>
+								</div>
+								<div class="card-footer bg-transparent border-top-0">
+									<button
+										class="btn btn-yellow w-100 article-modal-btn"
+										data-id={article.id}
+									>
+										Читать{" "}
+										<i class="fas fa-arrow-right ms-1" />
+									</button>
+								</div>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- Модальное окно для статей -->
+		<div
+			class="modal fade"
+			id="articleModal"
+			tabindex="-1"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog modal-lg modal-dialog-centered">
+				<div class="modal-content bg-dark text-light">
+					<div class="modal-header border-0">
+						<h3 class="modal-title" id="articleModalTitle"></h3>
+						<button
+							type="button"
+							class="btn-close btn-close-white"
+							data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body" id="articleModalContent"></div>
+					<div class="modal-footer border-0">
+						<button
+							type="button"
+							class="btn btn-yellow"
+							data-bs-dismiss="modal">Закрыть</button
+						>
+					</div>
+				</div>
+			</div>
+		</div>
 	</main>
+
+	<BackToTop />
+
+	<script is:inline>
+		document.addEventListener("DOMContentLoaded", function () {
+			const modalArticles = {
+				"1": {
+					title: "Эволюция двигателя 2JZ-GTE",
+					content: `
+            <img src="/articles/2jz.jpg" class="img-fluid mb-4" alt="2JZ-GTE">
+            <h2>Технические особенности</h2>
+            <p>Двигатель 2JZ-GTE по праву считается одним из самых надёжных и перспективных для тюнинга...</p>
+            <h2>История создания</h2>
+            <p>Разработан в 1991 году для Toyota Aristo и Supra MKIV...</p>
+          `,
+				},
+				"2": {
+					title: "История Nissan Skyline GT-R",
+					content: `
+            <img src="/articles/skyline.jpg" class="img-fluid mb-4" alt="Skyline GT-R">
+            <h2>От истоков до современности</h2>
+            <p>История Skyline началась в 1957 году...</p>
+          `,
+				},
+				"3": {
+					title: "10 лучших JDM-автомобилей для дрифта",
+					content: `
+            <img src="/news/indexnews/JDM дрифт.png" class="img-fluid mb-4" alt="JDM дрифт">
+            <h2>Топ-10 машин для дрифта</h2>
+            <p>Для настоящего дрифта нужен не просто задний привод, а особый характер автомобиля...</p>
+          `,
+				},
+			};
+
+			document.querySelectorAll(".article-modal-btn").forEach((btn) => {
+				btn.addEventListener("click", function () {
+					const articleId = this.dataset.id;
+					const article = modalArticles[articleId];
+
+					document.getElementById("articleModalTitle").textContent =
+						article.title;
+					document.getElementById("articleModalContent").innerHTML =
+						article.content;
+					new bootstrap.Modal(
+						document.getElementById("articleModal"),
+					).show();
+				});
+			});
+		});
+	</script>
+
+	<style scoped>
+		.article-card {
+			transition:
+				transform 0.3s ease,
+				box-shadow 0.3s ease;
+		}
+
+		.article-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+		}
+
+		.card-img-top {
+			height: 200px;
+			object-fit: cover;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		}
+
+		.modal-content {
+			border: 1px solid #ffc107;
+		}
+	</style>
 </Layout>

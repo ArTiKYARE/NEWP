@@ -1,0 +1,247 @@
+---
+// src/pages/articles.astro
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+
+const articles = [
+  {
+    id: 1,
+    title: "Эволюция двигателя 2JZ-GTE: от Supra до современных проектов",
+    image: "/articles/2jz.jpg",
+    excerpt: "Полный разбор легендарного двигателя Toyota, который стал иконой тюнинг-культуры",
+    category: "Технологии",
+    content: "<p>Двигатель 2JZ-GTE по праву считается одним из самых надёжных и перспективных для тюнинга...</p><p>История началась в 1991 году с выпуска Toyota Aristo...</p>"
+  },
+  {
+    id: 2,
+    title: "История Nissan Skyline GT-R: от Prince до R35",
+    image: "/articles/skyline.jpg",
+    excerpt: "Как скромный седан превратился в самого известного японского суперкара",
+    category: "История",
+    content: "<p>Skyline GT-R прошёл долгий путь от обычного седана до легендарного спорткара...</p>"
+  },
+  {
+    id: 3,
+    title: "10 лучших JDM-автомобилей для дрифта в 2023 году",
+    image: "/articles/drift.jpg",
+    excerpt: "От проверенных временем AE86 до неожиданных вариантов для начинающих",
+    category: "Тюнинг",
+    content: "<p>Для настоящего дрифта нужен не просто задний привод, а особый характер автомобиля...</p>"
+  },
+  {
+    id: 4,
+    title: "Роторные двигатели Mazda: почему они исчезли и вернутся ли?",
+    image: "/articles/rotary.jpg",
+    excerpt: "Анализ уникальной технологии и её перспектив в современном автопроме",
+    category: "Технологии",
+    content: "<p>Роторный двигатель Ванкеля - уникальная разработка, которая так и не стала массовой...</p>"
+  },
+  {
+    id: 5,
+    title: "Как купить и ввезти JDM-автомобиль в Россию в 2023",
+    image: "/articles/import.jpg",
+    excerpt: "Полное руководство по выбору, покупке и растаможке японских автомобилей",
+    category: "Практика",
+    content: "<p>Импорт JDM-автомобилей требует знания многих нюансов...</p>"
+  },
+  {
+    id: 6,
+    title: "Honda NSX vs Toyota Supra: вечное противостояние",
+    image: "/articles/nsx-supra.jpg",
+    excerpt: "Сравнение двух легенд 90-х, которые определили развитие JDM-культуры",
+    category: "Сравнения",
+    content: "<p>NSX и Supra представляют два разных подхода к созданию спортивных автомобилей...</p>"
+  }
+];
+
+const categories = ["Все", ...new Set(articles.map(article => article.category))];
+---
+
+<Layout title="Статьи - CarTuningLibrary">
+  <Header />
+
+  <main class="container mt-5 pt-4">
+    <!-- Заголовок -->
+    <h1 class="text-center section-title mb-5 fade-in">Статьи и новости</h1>
+
+    <!-- Фильтры -->
+    <section class="mb-5 fade-in">
+      <div class="bg-gradient p-4 rounded-3 shadow">
+        <div class="row align-items-center">
+          <div class="col-md-6 mb-3 mb-md-0">
+            <h3 class="mb-0">Категории</h3>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex flex-wrap gap-2" id="categoryFilters">
+              {categories.map((category, index) => (
+                <button 
+                  class={`btn ${index === 0 ? 'btn-yellow' : 'btn-outline-yellow'}`}
+                  data-category={category === "Все" ? "all" : category}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Список статей -->
+    <section class="fade-in">
+      <div class="row g-4" id="articlesContainer">
+        {articles.map((article) => (
+          <div class="col-lg-4 col-md-6 article-item" data-category={article.category}>
+            <div class="card article-card h-100">
+              <img
+                src={article.image}
+                class="card-img-top"
+                alt={article.title}
+                loading="lazy"
+              />
+              <div class="card-body">
+                <span class="badge bg-warning text-dark mb-3">{article.category}</span>
+                <h3 class="card-title">{article.title}</h3>
+                <p class="card-text">{article.excerpt}</p>
+              </div>
+              <div class="card-footer bg-transparent border-top-0">
+                <button 
+                  class="btn btn-yellow w-100 article-modal-btn"
+                  data-id={article.id}
+                >
+                  Читать <i class="fas fa-arrow-right ms-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Модальное окно -->
+    <div class="modal fade" id="articleModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header border-0">
+            <h3 class="modal-title" id="articleModalTitle"></h3>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="articleModalContent"></div>
+          <div class="modal-footer border-0">
+            <button type="button" class="btn btn-yellow" data-bs-dismiss="modal">Закрыть</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style scoped>
+  .article-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-outline-yellow {
+    color: #ffc107;
+    border-color: #ffc107;
+  }
+  
+  .btn-outline-yellow:hover {
+    background-color: #ffc107;
+    color: #000;
+  }
+
+  .modal-content {
+    border: 1px solid #ffc107;
+  }
+</style>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', function() {
+  // Фильтрация статей
+  const filterButtons = document.querySelectorAll('#categoryFilters .btn');
+  const articleItems = document.querySelectorAll('.article-item');
+  
+  filterButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      // Активный стиль для кнопок
+      filterButtons.forEach(btn => {
+        btn.classList.remove('btn-yellow');
+        btn.classList.add('btn-outline-yellow');
+      });
+      this.classList.remove('btn-outline-yellow');
+      this.classList.add('btn-yellow');
+      
+      // Фильтрация статей
+      const category = this.dataset.category;
+      articleItems.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Модальное окно
+  const modal = new bootstrap.Modal(document.getElementById('articleModal'));
+  const modalTitle = document.getElementById('articleModalTitle');
+  const modalContent = document.getElementById('articleModalContent');
+  const articlesData = {
+    "1": {
+      title: "Эволюция двигателя 2JZ-GTE: от Supra до современных проектов",
+      content: `<img src="/articles/2jz.jpg" class="img-fluid mb-4" alt="2JZ-GTE">
+      <p>Двигатель 2JZ-GTE по праву считается одним из самых надёжных и перспективных для тюнинга...</p>
+      <p>История началась в 1991 году с выпуска Toyota Aristo...</p>`
+    },
+    "2": {
+      title: "История Nissan Skyline GT-R: от Prince до R35",
+      content: `<img src="/articles/skyline.jpg" class="img-fluid mb-4" alt="Skyline GT-R">
+      <p>Skyline GT-R прошёл долгий путь от обычного седана до легендарного спорткара...</p>`
+    },
+    "3": {
+      title: "10 лучших JDM-автомобилей для дрифта в 2023 году",
+      content: `<img src="/articles/drift.jpg" class="img-fluid mb-4" alt="JDM дрифт">
+      <p>Для настоящего дрифта нужен не просто задний привод, а особый характер автомобиля...</p>`
+    },
+    "4": {
+      title: "Роторные двигатели Mazda: почему они исчезли и вернутся ли?",
+      content: `<img src="/articles/rotary.jpg" class="img-fluid mb-4" alt="Роторный двигатель">
+      <p>Роторный двигатель Ванкеля - уникальная разработка, которая так и не стала массовой...</p>`
+    },
+    "5": {
+      title: "Как купить и ввезти JDM-автомобиль в Россию в 2023",
+      content: `<img src="/articles/import.jpg" class="img-fluid mb-4" alt="Импорт JDM">
+      <p>Импорт JDM-автомобилей требует знания многих нюансов...</p>`
+    },
+    "6": {
+      title: "Honda NSX vs Toyota Supra: вечное противостояние",
+      content: `<img src="/articles/nsx-supra.jpg" class="img-fluid mb-4" alt="NSX vs Supra">
+      <p>NSX и Supra представляют два разных подхода к созданию спортивных автомобилей...</p>`
+    }
+  };
+
+  document.querySelectorAll('.article-modal-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const articleId = this.dataset.id;
+      const article = articlesData[articleId];
+      
+      modalTitle.textContent = article.title;
+      modalContent.innerHTML = article.content;
+      modal.show();
+    });
+  });
+});
+</script>
