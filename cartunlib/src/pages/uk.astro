@@ -1,0 +1,466 @@
+---
+// src/pages/uk.astro
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+
+const cars = [
+  {
+    id: "mini-cooper",
+    title: "Mini Cooper S",
+    image: "/uk/mini-cooper.webp",
+    specs: ["2.0L Turbo", "192 л.с.", "FWD"],
+    year: 2020,
+    content: `
+      <img src="/uk/mini-cooper2.webp" class="img-fluid mb-4" alt="Mini Cooper S">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 2.0L TwinPower Turbo</li>
+        <li>Мощность: 192 л.с.</li>
+        <li>Разгон 0-100: 6.7 сек</li>
+        <li>Коробка передач: 6-ст. механика или 7-ст. автомат</li>
+      </ul>
+      <h2>История</h2>
+      <p>Mini Cooper S - культовый британский хэтчбек, популярный среди тюнеров благодаря компактным размерам и отличной управляемости. Часто модифицируется для участия в ралли и городских гонках.</p>
+    `,
+  },
+  {
+    id: "jaguar-f-type",
+    title: "Jaguar F-Type",
+    image: "/uk/jaguar-f-type.webp",
+    specs: ["5.0L V8", "450 л.с.", "RWD"],
+    year: 2021,
+    content: `
+      <img src="/uk/jaguar-f-type2.webp" class="img-fluid mb-4" alt="Jaguar F-Type">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 5.0L Supercharged V8</li>
+        <li>Мощность: 450 л.с.</li>
+        <li>Крутящий момент: 580 Нм</li>
+        <li>0-100 км/ч: 4.3 сек</li>
+      </ul>
+      <h2>История</h2>
+      <p>Jaguar F-Type - современный британский спортивный автомобиль, наследник легендарного E-Type. Популярен среди ценителей элегантного дизайна и мощных двигателей.</p>
+    `,
+  },
+  {
+    id: "land-rover-defender",
+    title: "Land Rover Defender",
+    image: "/uk/defender.webp",
+    specs: ["3.0L Diesel", "300 л.с.", "4WD"],
+    year: 2022,
+    content: `
+      <img src="/uk/defender2.webp" class="img-fluid mb-4" alt="Land Rover Defender">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 3.0L Turbo Diesel</li>
+        <li>Мощность: 300 л.с.</li>
+        <li>Крутящий момент: 650 Нм</li>
+        <li>Клиренс: 291 мм</li>
+      </ul>
+      <h2>История</h2>
+      <p>Land Rover Defender - легендарный британский внедорожник, часто подвергающийся тюнингу для экспедиций и экстремального офф-роуда. Сохраняет культовый дизайн с современными технологиями.</p>
+    `,
+  },
+];
+---
+
+<Layout title="Британский тюнинг - CarTuningLibrary">
+  <Header />
+
+  <main class="container mt-5 pt-4">
+    <!-- Заголовок -->
+    <h1 class="text-center section-title mb-5 fade-in">Британский тюнинг</h1>
+
+    <!-- Основной контент -->
+    <section class="fade-in">
+      <div class="row g-5 align-items-stretch">
+        <div class="col-lg-6">
+          <div class="bg-gradient p-4 rounded-3 shadow h-100 d-flex flex-column">
+            <h2 class="mb-4">Философия британского тюнинга</h2>
+            <p class="lead flex-grow-1">
+              Британский тюнинг сочетает в себе элегантность, инновации и 
+              приверженность традициям. Здесь ценят баланс между мощью и утонченностью.
+            </p>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-3">
+                ➤ Элегантность - сдержанный стиль и качество
+              </li>
+              <li class="mb-3">
+                ➤ Инновации - передовые инженерные решения
+              </li>
+              <li class="mb-3">➤ Наследие - уважение к автомобильной истории</li>
+              <li class="mb-0">
+                ➤ Индивидуальность - эксклюзивные решения
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="h-100">
+            <img
+              src="/uk/uk-tuning-main.webp"
+              alt="Британский тюнинг"
+              class="img-fluid rounded-3 shadow w-100 h-100 object-fit-cover"
+              loading="lazy"
+              style="min-height: 100%"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Популярные модели с модальными окнами -->
+    <section class="my-5 fade-in">
+      <h2 class="section-title text-center mb-5">Иконические модели</h2>
+      <div class="row g-4">
+        {
+          cars.map((car) => (
+            <div class="col-md-4 d-flex">
+              <div class="card article-card w-100">
+                <div class="card-img-container" style="height: 300px; overflow: hidden;">
+                  <img
+                    src={car.image}
+                    class="card-img-top h-100 w-100 object-fit-cover"
+                    alt={car.title}
+                    loading="lazy"
+                  />
+                </div>
+                <div class="card-body d-flex flex-column">
+                  <h3 class="card-title fw-bold">{car.title}</h3>
+                  <div class="d-flex justify-content-between mb-3">
+                    <span class="badge bg-warning text-dark">{car.year}</span>
+                    <div class="specs">
+                      {car.specs.map((spec) => (
+                        <span class="badge bg-secondary me-1">{spec}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-yellow w-100 car-modal-btn mt-auto"
+                    data-id={car.id}
+                  >
+                    Подробнее
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Модальное окно для машин -->
+    <div class="modal fade" id="carModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header border-0">
+            <h3 class="modal-title" id="carModalTitle"></h3>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="carModalContent"></div>
+          <div class="modal-footer border-0">
+            <button type="button" class="btn btn-yellow" data-bs-dismiss="modal"
+              >Закрыть</button
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Культурный блок -->
+    <section class="bg-gradient p-4 rounded-3 shadow my-5 fade-in">
+      <h2 class="mb-4">Культура британского тюнинга</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="lead">
+            Британский тюнинг имеет богатые традиции и уникальные особенности:
+          </p>
+          <ul>
+            <li>
+              <strong>GT-тюнинг</strong> - подготовка автомобилей для гранд-туризм
+            </li>
+            <li>
+              <strong>Ретро-модерн</strong> - сочетание классики и современных технологий
+            </li>
+            <li>
+              <strong>Эксклюзивные ателье</strong> - индивидуальные проекты
+            </li>
+            <li>
+              <strong>Ралли-наследие</strong> - традиции британского автоспорта
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <img
+            src="/uk/uk-tuning-culture.webp"
+            alt="Культура британского тюнинга"
+            class="img-fluid rounded-3"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="uk-history py-5 fade-in">
+      <div class="container">
+        <h2 class="section-title text-center mb-5">
+          История британского тюнинга
+        </h2>
+
+        <!-- 1960-1970-е -->
+        <div class="row align-items-stretch mb-5 g-5">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/uk/60s-70s-tuning.webp"
+                alt="Британский тюнинг 1960-70-х"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">1960–1970-е: Золотой век</h3>
+              <p>
+                Период расцвета британского автопрома и тюнинг-культуры:
+              </p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>Mini Cooper</strong> - икона городского тюнинга
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Jaguar E-Type</strong> - эталон стиля и элегантности
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Land Rover Series</strong> - начало офф-роуд культуры
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Факт:</h5>
+                <p class="mb-0">
+                  В 1960-х появились первые специализированные тюнинг-ателье в Лондоне.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1980-1990-е -->
+        <div class="row align-items-stretch mb-5 g-5 flex-lg-row-reverse">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/uk/80s-90s-tuning.webp"
+                alt="Британский тюнинг 1980-90-х"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">1980–1990-е: Эпоха турбо</h3>
+              <p>
+                Развитие технологий и новых направлений:
+              </p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>Ford Escort RS Cosworth</strong> - легенда раллийного тюнинга
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Aston Martin V8 Vantage</strong> - роскошный тюнинг
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Range Rover Classic</strong> - начало люксового офф-роуда
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Технология:</h5>
+                <p class="mb-0">
+                  В 1980-х британские инженеры pioneered турбонаддув для массовых автомобилей.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2000-2010-е -->
+        <div class="row align-items-stretch mb-5 g-5">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/uk/2000s-tuning.webp"
+                alt="Британский тюнинг 2000-х"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">2000–2010-е: Современные тенденции</h3>
+              <p>Новый виток развития тюнинг-культуры:</p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>Noble M12</strong> - эксклюзивные спортивные автомобили
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Mini Cooper S (R53)</strong> - возрождение классики
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Land Rover Defender</strong> - культовый внедорожник
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Тренд:</h5>
+                <p class="mb-0">
+                  Появление специализированных тюнинг-компаний, работающих с электроникой.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2020-е -->
+        <div class="row align-items-stretch g-5 flex-lg-row-reverse">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/uk/2020s-tuning.webp"
+                alt="Современный британский тюнинг"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">2020-е: Электрическая эра</h3>
+              <p>Будущее британского тюнинга:</p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>Aston Martin Valkyrie</strong> - гиперкар нового поколения
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Lotus Evija</strong> - электрический суперкар
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>McLaren Artura</strong> - гибридные технологии
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Инновации:</h5>
+                <p class="mb-0">
+                  Британские компании лидируют в разработке тюнинга для электромобилей.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Данные для модальных окон
+    const carData = {
+      "mini-cooper": {
+        title: "Mini Cooper S",
+        content: `
+          <img src="/uk/mini-cooper2.webp" class="img-fluid mb-4" alt="Mini Cooper S">
+          <h2>Технические характеристики</h2>
+          <ul>
+            <li>Двигатель: 2.0L TwinPower Turbo</li>
+            <li>Мощность: 192 л.с.</li>
+            <li>Разгон 0-100: 6.7 сек</li>
+            <li>Коробка передач: 6-ст. механика или 7-ст. автомат</li>
+          </ul>
+          <h2>История</h2>
+          <p>Mini Cooper S - культовый британский хэтчбек, популярный среди тюнеров благодаря компактным размерам и отличной управляемости. Часто модифицируется для участия в ралли и городских гонках.</p>
+        `,
+      },
+      "jaguar-f-type": {
+        title: "Jaguar F-Type",
+        content: `
+          <img src="/uk/jaguar-f-type2.webp" class="img-fluid mb-4" alt="Jaguar F-Type">
+          <h2>Технические характеристики</h2>
+          <ul>
+            <li>Двигатель: 5.0L Supercharged V8</li>
+            <li>Мощность: 450 л.с.</li>
+            <li>Крутящий момент: 580 Нм</li>
+            <li>0-100 км/ч: 4.3 сек</li>
+          </ul>
+          <h2>История</h2>
+          <p>Jaguar F-Type - современный британский спортивный автомобиль, наследник легендарного E-Type. Популярен среди ценителей элегантного дизайна и мощных двигателей.</p>
+        `,
+      },
+      "land-rover-defender": {
+        title: "Land Rover Defender",
+        content: `
+          <img src="/uk/defender2.webp" class="img-fluid mb-4" alt="Land Rover Defender">
+          <h2>Технические характеристики</h2>
+          <ul>
+            <li>Двигатель: 3.0L Turbo Diesel</li>
+            <li>Мощность: 300 л.с.</li>
+            <li>Крутящий момент: 650 Нм</li>
+            <li>Клиренс: 291 мм</li>
+          </ul>
+          <h2>История</h2>
+          <p>Land Rover Defender - легендарный британский внедорожник, часто подвергающийся тюнингу для экспедиций и экстремального офф-роуда. Сохраняет культовый дизайн с современными технологиями.</p>
+        `,
+      },
+    };
+
+    // Обработчики для модальных окон машин
+    document.querySelectorAll(".car-modal-btn").forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const carId = this.dataset.id;
+        const car = carData[carId];
+
+        document.getElementById("carModalTitle").textContent = car.title;
+        document.getElementById("carModalContent").innerHTML = car.content;
+        new bootstrap.Modal(document.getElementById("carModal")).show();
+      });
+    });
+  });
+</script>
+
+<style scoped>
+    .specs .badge {
+      font-size: 0.8rem;
+      padding: 0.5em 0.7em;
+    }
+  
+    .lead {
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+  
+    ul {
+      padding-left: 1.5rem;
+    }
+  
+    li {
+      margin-bottom: 0.8rem;
+      position: relative;
+    }
+  
+    li::before {
+      content: "•";
+      color: #ffc107;
+      position: absolute;
+      left: -1.2rem;
+    }
+  </style>

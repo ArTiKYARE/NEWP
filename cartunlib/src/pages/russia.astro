@@ -1,0 +1,466 @@
+---
+// src/pages/russia.astro
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+
+const cars = [
+  {
+    id: "lada-vesta-sport",
+    title: "Lada Vesta Sport",
+    image: "/russia/vesta-sport.webp",
+    specs: ["1.8L turbo", "145 л.с.", "FWD"],
+    year: 2018,
+    content: `
+      <img src="/russia/vesta-sport2.webp" class="img-fluid mb-4" alt="Lada Vesta Sport">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 1.8L турбированный</li>
+        <li>Мощность: 145 л.с.</li>
+        <li>Разгон 0-100: 9.6 сек</li>
+        <li>Максимальная скорость: 197 км/ч</li>
+      </ul>
+      <h2>История</h2>
+      <p>Lada Vesta Sport - первый серийный спортивный автомобиль от АвтоВАЗа, разработанный при участии команды Lada Sport. Отличается агрессивным дизайном и улучшенными динамическими характеристиками.</p>
+    `,
+  },
+  {
+    id: "uaz-patriot",
+    title: "UAZ Patriot",
+    image: "/russia/uaz-patriot.webp",
+    specs: ["2.7L бензин", "149 л.с.", "4WD"],
+    year: 2020,
+    content: `
+      <img src="/russia/uaz-patriot2.webp" class="img-fluid mb-4" alt="UAZ Patriot">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 2.7L бензиновый</li>
+        <li>Мощность: 149 л.с.</li>
+        <li>Коробка передач: 5-ст. механика</li>
+        <li>Привод: Полный (4WD)</li>
+      </ul>
+      <h2>История</h2>
+      <p>UAZ Patriot - легендарный российский внедорожник, популярный среди любителей офф-роуда. Часто тюнингуется для участия в ралли-рейдах и экспедициях.</p>
+    `,
+  },
+  {
+    id: "gaz-volga",
+    title: "GAZ Volga",
+    image: "/russia/gaz-volga.webp",
+    specs: ["2.5L бензин", "140 л.с.", "RWD"],
+    year: 2007,
+    content: `
+      <img src="/russia/gaz-volga2.webp" class="img-fluid mb-4" alt="GAZ Volga">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 2.5L бензиновый</li>
+        <li>Мощность: 140 л.с.</li>
+        <li>Крутящий момент: 211 Нм</li>
+        <li>0-100 км/ч: 12.5 сек</li>
+      </ul>
+      <h2>История</h2>
+      <p>GAZ Volga - культовый российский автомобиль, который часто становится объектом тюнинга в стиле "ретро-модерн". Особенно популярен среди ценителей советского автопрома.</p>
+    `,
+  },
+];
+---
+
+<Layout title="Российский тюнинг - CarTuningLibrary">
+  <Header />
+
+  <main class="container mt-5 pt-4">
+    <!-- Заголовок -->
+    <h1 class="text-center section-title mb-5 fade-in">Российский тюнинг</h1>
+
+    <!-- Основной контент -->
+    <section class="fade-in">
+      <div class="row g-5 align-items-stretch">
+        <div class="col-lg-6">
+          <div class="bg-gradient p-4 rounded-3 shadow h-100 d-flex flex-column">
+            <h2 class="mb-4">Философия российского тюнинга</h2>
+            <p class="lead flex-grow-1">
+              Российский тюнинг - это сочетание изобретательности, практичности и 
+              любви к автомобилям. Здесь ценят надежность и индивидуальность.
+            </p>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-3">
+                ➤ Доступность - тюнинг для всех
+              </li>
+              <li class="mb-3">
+                ➤ Практичность - улучшение характеристик
+              </li>
+              <li class="mb-3">➤ Универсальность - от города до бездорожья</li>
+              <li class="mb-0">
+                ➤ Сообщество - клубы и совместные проекты
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="h-100">
+            <img
+              src="/russia/rus-tuning-main.webp"
+              alt="Российский тюнинг"
+              class="img-fluid rounded-3 shadow w-100 h-100 object-fit-cover"
+              loading="lazy"
+              style="min-height: 100%"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Популярные модели с модальными окнами -->
+    <section class="my-5 fade-in">
+      <h2 class="section-title text-center mb-5">Популярные модели</h2>
+      <div class="row g-4">
+        {
+          cars.map((car) => (
+            <div class="col-md-4 d-flex">
+              <div class="card article-card w-100">
+                <div class="card-img-container" style="height: 300px; overflow: hidden;">
+                  <img
+                    src={car.image}
+                    class="card-img-top h-100 w-100 object-fit-cover"
+                    alt={car.title}
+                    loading="lazy"
+                  />
+                </div>
+                <div class="card-body d-flex flex-column">
+                  <h3 class="card-title fw-bold">{car.title}</h3>
+                  <div class="d-flex justify-content-between mb-3">
+                    <span class="badge bg-warning text-dark">{car.year}</span>
+                    <div class="specs">
+                      {car.specs.map((spec) => (
+                        <span class="badge bg-secondary me-1">{spec}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-yellow w-100 car-modal-btn mt-auto"
+                    data-id={car.id}
+                  >
+                    Подробнее
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Модальное окно для машин -->
+    <div class="modal fade" id="carModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header border-0">
+            <h3 class="modal-title" id="carModalTitle"></h3>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="carModalContent"></div>
+          <div class="modal-footer border-0">
+            <button type="button" class="btn btn-yellow" data-bs-dismiss="modal"
+              >Закрыть</button
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Культурный блок -->
+    <section class="bg-gradient p-4 rounded-3 shadow my-5 fade-in">
+      <h2 class="mb-4">Культура российского тюнинга</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="lead">
+            Российский тюнинг имеет свои уникальные особенности и традиции:
+          </p>
+          <ul>
+            <li>
+              <strong>Драгрейсинг</strong> - гонки на отечественных автомобилях
+            </li>
+            <li>
+              <strong>Офф-роуд</strong> - подготовка внедорожников к сложным условиям
+            </li>
+            <li>
+              <strong>Стайлинг</strong> - индивидуальный внешний вид
+            </li>
+            <li>
+              <strong>Технический тюнинг</strong> - улучшение характеристик доступными способами
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <img
+            src="/russia/rus-tuning-culture.webp"
+            alt="Культура российского тюнинга"
+            class="img-fluid rounded-3"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="rus-history py-5 fade-in">
+      <div class="container">
+        <h2 class="section-title text-center mb-5">
+          История российского тюнинга
+        </h2>
+
+        <!-- 1990-е -->
+        <div class="row align-items-stretch mb-5 g-5">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/russia/90s-tuning.webp"
+                alt="Российский тюнинг 90-х"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">1990-е: Начало тюнинг-культуры</h3>
+              <p>
+                После распада СССР начали появляться первые тюнинг-ателье:
+              </p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>ВАЗ 2108/2109</strong> - первые массово тюнингуемые модели
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Москвич 2141</strong> - эксперименты с аэродинамикой
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>ГАЗ 24</strong> - классика с современными доработками
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Факт:</h5>
+                <p class="mb-0">
+                  В 90-х появились первые специализированные журналы о тюнинге.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2000-е -->
+        <div class="row align-items-stretch mb-5 g-5 flex-lg-row-reverse">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/russia/2000s-tuning.webp"
+                alt="Российский тюнинг 2000-х"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">2000-е: Развитие индустрии</h3>
+              <p>
+                Появление новых технологий и материалов:
+              </p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>Lada Priora</strong> - популярная модель для тюнинга
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>УАЗ Хантер</strong> - офф-роуд тюнинг
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Волга Сайбер</strong> - эксперименты с дизайном
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Технология:</h5>
+                <p class="mb-0">
+                  Появились первые российские тюнинг-комплекты для серийных моделей.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2010-е -->
+        <div class="row align-items-stretch mb-5 g-5">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/russia/2010s-tuning.webp"
+                alt="Российский тюнинг 2010-х"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">2010-е: Профессионализация</h3>
+              <p>Новый уровень качества и технологий:</p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>Lada Vesta Sport</strong> - первый заводской тюнинг
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>УАЗ Патриот</strong> - профессиональный офф-роуд тюнинг
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>ГАЗель NEXT</strong> - тюнинг коммерческого транспорта
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Тренд:</h5>
+                <p class="mb-0">
+                  Появление специализированных тюнинг-ателье с сертифицированными решениями.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2020-е -->
+        <div class="row align-items-stretch g-5 flex-lg-row-reverse">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/russia/2020s-tuning.webp"
+                alt="Современный российский тюнинг"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">2020-е: Современные тенденции</h3>
+              <p>Эволюция российского тюнинга:</p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>Электрификация</strong> - тюнинг с учетом экологии
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Цифровые технологии</strong> - чип-тюнинг и настройка через ПО
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Индивидуальные проекты</strong> - уникальные автомобили
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Рынок:</h5>
+                <p class="mb-0">
+                  Российский тюнинг становится частью глобальной автомобильной культуры.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Данные для модальных окон
+    const carData = {
+      "lada-vesta-sport": {
+        title: "Lada Vesta Sport",
+        content: `
+          <img src="/russia/vesta-sport2.webp" class="img-fluid mb-4" alt="Lada Vesta Sport">
+          <h2>Технические характеристики</h2>
+          <ul>
+            <li>Двигатель: 1.8L турбированный</li>
+            <li>Мощность: 145 л.с.</li>
+            <li>Разгон 0-100: 9.6 сек</li>
+            <li>Максимальная скорость: 197 км/ч</li>
+          </ul>
+          <h2>История</h2>
+          <p>Lada Vesta Sport - первый серийный спортивный автомобиль от АвтоВАЗа, разработанный при участии команды Lada Sport. Отличается агрессивным дизайном и улучшенными динамическими характеристиками.</p>
+        `,
+      },
+      "uaz-patriot": {
+        title: "UAZ Patriot",
+        content: `
+          <img src="/russia/uaz-patriot2.webp" class="img-fluid mb-4" alt="UAZ Patriot">
+          <h2>Технические характеристики</h2>
+          <ul>
+            <li>Двигатель: 2.7L бензиновый</li>
+            <li>Мощность: 149 л.с.</li>
+            <li>Коробка передач: 5-ст. механика</li>
+            <li>Привод: Полный (4WD)</li>
+          </ul>
+          <h2>История</h2>
+          <p>UAZ Patriot - легендарный российский внедорожник, популярный среди любителей офф-роуда. Часто тюнингуется для участия в ралли-рейдах и экспедициях.</p>
+        `,
+      },
+      "gaz-volga": {
+        title: "GAZ Volga",
+        content: `
+          <img src="/russia/gaz-volga2.webp" class="img-fluid mb-4" alt="GAZ Volga">
+          <h2>Технические характеристики</h2>
+          <ul>
+            <li>Двигатель: 2.5L бензиновый</li>
+            <li>Мощность: 140 л.с.</li>
+            <li>Крутящий момент: 211 Нм</li>
+            <li>0-100 км/ч: 12.5 сек</li>
+          </ul>
+          <h2>История</h2>
+          <p>GAZ Volga - культовый российский автомобиль, который часто становится объектом тюнинга в стиле "ретро-модерн". Особенно популярен среди ценителей советского автопрома.</p>
+        `,
+      },
+    };
+
+    // Обработчики для модальных окон машин
+    document.querySelectorAll(".car-modal-btn").forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const carId = this.dataset.id;
+        const car = carData[carId];
+
+        document.getElementById("carModalTitle").textContent = car.title;
+        document.getElementById("carModalContent").innerHTML = car.content;
+        new bootstrap.Modal(document.getElementById("carModal")).show();
+      });
+    });
+  });
+</script>
+
+<style scoped>
+  .specs .badge {
+    font-size: 0.8rem;
+    padding: 0.5em 0.7em;
+  }
+
+  .lead {
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  ul {
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.8rem;
+    position: relative;
+  }
+
+  li::before {
+    content: "•";
+    color: #ffc107;
+    position: absolute;
+    left: -1.2rem;
+  }
+</style>

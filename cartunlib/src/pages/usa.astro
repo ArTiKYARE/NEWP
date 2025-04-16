@@ -1,0 +1,495 @@
+---
+// src/pages/usa.astro
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+
+const cars = [
+  {
+    id: "dodge-charger",
+    title: "Dodge Charger",
+    image: "/usa/dodge-charger.png",
+    specs: ["5.7L HEMI V8", "370 л.с.", "RWD"],
+    year: 2020,
+    content: `
+      <img src="/usa/dodge-charger2.webp" class="img-fluid mb-4" alt="Dodge Charger">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 5.7L HEMI V8</li>
+        <li>Мощность: 370 л.с.</li>
+        <li>Крутящий момент: 534 Нм</li>
+        <li>Разгон 0-100: 5.1 сек</li>
+      </ul>
+      <h2>История</h2>
+      <p>Dodge Charger - культовый американский маслкар, известный своей мощью и агрессивным дизайном. Современные версии сочетают в себе классические черты с современными технологиями.</p>
+    `,
+  },
+  {
+    id: "ford-mustang",
+    title: "Ford Mustang",
+    image: "/usa/ford-mustang.png",
+    specs: ["5.0L Coyote V8", "450 л.с.", "RWD"],
+    year: 2021,
+    content: `
+      <img src="/usa/ford-mustang2.webp" class="img-fluid mb-4" alt="Ford Mustang">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 5.0L Coyote V8</li>
+        <li>Мощность: 450 л.с.</li>
+        <li>Коробка передач: 6-ст. механика или 10-ст. автомат</li>
+        <li>Разгон 0-100: 4.3 сек</li>
+      </ul>
+      <h2>История</h2>
+      <p>Ford Mustang - легендарный американский спортивный автомобиль, впервые представленный в 1964 году. Символ американской автомобильной культуры и один из самых узнаваемых автомобилей в мире.</p>
+    `,
+  },
+  {
+    id: "chevrolet-camaro",
+    title: "Chevrolet Camaro",
+    image: "/usa/chevrolet-camaro.png",
+    specs: ["6.2L LT1 V8", "455 л.с.", "RWD"],
+    year: 2022,
+    content: `
+      <img src="/usa/chevrolet-camaro2.webp" class="img-fluid mb-4" alt="Chevrolet Camaro">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 6.2L LT1 V8</li>
+        <li>Мощность: 455 л.с.</li>
+        <li>Крутящий момент: 617 Нм</li>
+        <li>0-100 км/ч: 4.0 сек</li>
+      </ul>
+      <h2>История</h2>
+      <p>Chevrolet Camaro - главный конкурент Ford Mustang, представленный в 1966 году. Известен своей мощью, агрессивным дизайном и успехами в motorsport.</p>
+    `,
+  },
+];
+---
+
+<Layout title="Американский тюнинг - CarTuningLibrary">
+  <Header />
+
+  <main class="container mt-5 pt-4">
+    <!-- Заголовок -->
+    <h1 class="text-center section-title mb-5 fade-in">Американский тюнинг</h1>
+
+    <!-- Основной контент -->
+    <section class="fade-in">
+      <div class="row g-5 align-items-stretch">
+        <div class="col-lg-6">
+          <div
+            class="bg-gradient p-4 rounded-3 shadow h-100 d-flex flex-column"
+          >
+            <h2 class="mb-4">Философия американского тюнинга</h2>
+            <p class="lead flex-grow-1">
+              Американский тюнинг - это культ мощности, громкого звука и
+              агрессивного стиля. Здесь главное - впечатления и эмоции, а не
+              только техническое совершенство.
+            </p>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-3">
+                ➤ Двигатели - большие объемы, огромный крутящий момент
+              </li>
+              <li class="mb-3">➤ Звук - громкий, хриплый, узнаваемый рёв V8</li>
+              <li class="mb-3">➤ Дизайн - агрессивные линии, широкие колёса</li>
+              <li class="mb-0">
+                ➤ Культура - драг-рейсинг, дрэг-стрипы, автомобильные шоу
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="h-100">
+            <img
+              src="/usa/Американский тюнинг филос.webp"
+              alt="Американский тюнинг маслкар на трассе"
+              class="img-fluid rounded-3 shadow w-100 h-100 object-fit-cover"
+              loading="lazy"
+              style="min-height: 100%"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Популярные модели с модальными окнами -->
+    <section class="my-5 fade-in">
+      <h2 class="section-title text-center mb-5">Легендарные модели</h2>
+      <div class="row g-4">
+        {
+          cars.map((car) => (
+            <div class="col-md-4 d-flex">
+              <div class="card article-card w-100">
+                <div
+                  class="card-img-container"
+                  style="height: 400px; overflow: hidden;"
+                >
+                  <img
+                    src={car.image}
+                    class="card-img-top h-100 w-100 object-fit-cover"
+                    alt={car.title}
+                    loading="lazy"
+                  />
+                </div>
+                <div class="card-body d-flex flex-column">
+                  <h3 class="card-title fw-bold">{car.title}</h3>
+                  <div class="d-flex justify-content-between mb-3">
+                    <span class="badge bg-warning text-dark">{car.year}</span>
+                    <div class="specs">
+                      {car.specs.map((spec) => (
+                        <span class="badge bg-secondary me-1">{spec}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-yellow w-100 car-modal-btn mt-auto"
+                    data-id={car.id}
+                  >
+                    Подробнее
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Модальное окно для машин -->
+    <div class="modal fade" id="carModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header border-0">
+            <h3 class="modal-title" id="carModalTitle"></h3>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="carModalContent"></div>
+          <div class="modal-footer border-0">
+            <button type="button" class="btn btn-yellow" data-bs-dismiss="modal"
+              >Закрыть</button
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Культурный блок -->
+    <section class="bg-gradient p-4 rounded-3 shadow my-5 fade-in">
+      <h2 class="mb-4">Культура американского тюнинга</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="lead">
+            Американский тюнинг - это целая субкультура со своими традициями и
+            особенностями:
+          </p>
+          <ul>
+            <li>
+              <strong>Драг-рейсинг</strong> - гонки на четверть мили, где важны только
+              мощность и время
+            </li>
+            <li>
+              <strong>Маслкары</strong> - большие, мощные автомобили с двигателями
+              V8
+            </li>
+            <li>
+              <strong>Lowriders</strong> - автомобили с гидроподвеской и уникальным
+              стилем
+            </li>
+            <li>
+              <strong>Hot rods</strong> - переделанные классические автомобили с
+              современными двигателями
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <img
+            src="/usa/Американский тюнинг культура.webp"
+            alt="Американский тюнинг культура"
+            class="img-fluid rounded-3"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="usa-history py-5 fade-in">
+      <div class="container">
+        <h2 class="section-title text-center mb-5">
+          История американского тюнинга
+        </h2>
+
+        <!-- 1950-1960-е -->
+        <div class="row align-items-stretch mb-5 g-5">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/usa/Классические американские автомобили.webp"
+                alt="Классические американские автомобили"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div
+              class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column"
+            >
+              <h3 class="mb-4">1950–1960-е: Рождение маслкаров</h3>
+              <p>
+                Послевоенный период стал временем расцвета американского
+                автопрома:
+              </p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>Chevrolet Bel Air (1955)</strong> - икона стиля 50-х
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Ford Mustang (1964)</strong> - первый пони-кар
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Dodge Charger (1966)</strong> - легенда NASCAR
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Культурный факт:</h5>
+                <p class="mb-0">
+                  В 1960-х начали появляться первые специализированные
+                  дрэг-стрипы для гонок на четверть мили.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1970-1980-е -->
+        <div class="row align-items-stretch mb-5 g-5 flex-lg-row-reverse">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/usa/Американские автомобили 70-80-х.webp"
+                alt="Американские автомобили 70-80-х"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div
+              class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column"
+            >
+              <h3 class="mb-4">1970–1980-е: Нефтяной кризис и новые вызовы</h3>
+              <p>
+                Кризис 1973 года заставил производителей пересмотреть подход:
+              </p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>Pontiac Firebird Trans Am (1977)</strong> - культовый
+                  автомобиль благодаря фильму "Смоки и Бандит"
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Chevrolet Camaro Z28 (1982)</strong> - возвращение к
+                  спортивным корням
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Buick Grand National (1987)</strong> - самый быстрый
+                  американский серийный автомобиль своего времени
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Технология:</h5>
+                <p class="mb-0">
+                  В 1980-х началось массовое внедрение турбонаддува в
+                  американские автомобили.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1990-е -->
+        <div class="row align-items-stretch mb-5 g-5">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/usa/Американские автомобили 90-х.webp"
+                alt="Американские автомобили 90-х"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div
+              class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column"
+            >
+              <h3 class="mb-4">1990-е: Возрождение мощности</h3>
+              <p>Новая эра американских спортивных автомобилей:</p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>Dodge Viper (1992)</strong> - 8.0L V10, 400 л.с.
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Ford Mustang SVT Cobra (1993)</strong> - 235 л.с., возвращение
+                  к корням
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Chevrolet Corvette C5 (1997)</strong> - 345 л.с., новая
+                  платформа
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Культурный феномен:</h5>
+                <p class="mb-0">
+                  В 1990-х началась популярность импортных тюнинг-культур, что
+                  привело к смешению стилей.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2000-е -->
+        <div class="row align-items-stretch g-5 flex-lg-row-reverse">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/usa/Современные американские автомобили.webp"
+                alt="Современные американские автомобили"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div
+              class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column"
+            >
+              <h3 class="mb-4">2000-е - настоящее время: Современная эра</h3>
+              <p>Эволюция американского тюнинга:</p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>2005</strong> - возрождение Ford GT с 550 л.с.
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>2008</strong> - Dodge Challenger возвращается на рынок
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>2020</strong> - Chevrolet Corvette C8 с центральным расположением
+                  двигателя
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Рынок:</h5>
+                <p class="mb-0">
+                  Цены на классические маслкары 60-70-х годов постоянно растут,
+                  а современные модели предлагают невероятную производительность
+                  за разумные деньги.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Данные для модальных окон
+    const carData = {
+      "dodge-charger": {
+        title: "Dodge Charger",
+        content: `
+          <img src="/usa/dodge-charger2.webp" class="img-fluid mb-4" alt="Dodge Charger">
+          <h2>Технические характеристики</h2>
+          <ul>
+            <li>Двигатель: 5.7L HEMI V8</li>
+            <li>Мощность: 370 л.с.</li>
+            <li>Крутящий момент: 534 Нм</li>
+            <li>Разгон 0-100: 5.1 сек</li>
+          </ul>
+          <h2>История</h2>
+          <p>Dodge Charger - культовый американский маслкар, известный своей мощью и агрессивным дизайном. Современные версии сочетают в себе классические черты с современными технологиями.</p>
+        `,
+      },
+      "ford-mustang": {
+        title: "Ford Mustang",
+        content: `
+          <img src="/usa/ford-mustang2.webp" class="img-fluid mb-4" alt="Ford Mustang">
+          <h2>Технические характеристики</h2>
+          <ul>
+            <li>Двигатель: 5.0L Coyote V8</li>
+            <li>Мощность: 450 л.с.</li>
+            <li>Коробка передач: 6-ст. механика или 10-ст. автомат</li>
+            <li>Разгон 0-100: 4.3 сек</li>
+          </ul>
+          <h2>История</h2>
+          <p>Ford Mustang - легендарный американский спортивный автомобиль, впервые представленный в 1964 году. Символ американской автомобильной культуры и один из самых узнаваемых автомобилей в мире.</p>
+        `,
+      },
+      "chevrolet-camaro": {
+        title: "Chevrolet Camaro",
+        content: `
+          <img src="public/usa/chevrolet-camaro2.webp" class="img-fluid mb-4" alt="Chevrolet Camaro">
+          <h2>Технические характеристики</h2>
+          <ul>
+            <li>Двигатель: 6.2L LT1 V8</li>
+            <li>Мощность: 455 л.с.</li>
+            <li>Крутящий момент: 617 Нм</li>
+            <li>0-100 км/ч: 4.0 сек</li>
+          </ul>
+          <h2>История</h2>
+          <p>Chevrolet Camaro - главный конкурент Ford Mustang, представленный в 1966 году. Известен своей мощью, агрессивным дизайном и успехами в motorsport.</p>
+        `,
+      },
+    };
+
+    // Обработчики для модальных окон машин
+    document.querySelectorAll(".car-modal-btn").forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const carId = this.dataset.id;
+        const car = carData[carId];
+
+        document.getElementById("carModalTitle").textContent = car.title;
+        document.getElementById("carModalContent").innerHTML = car.content;
+        new bootstrap.Modal(document.getElementById("carModal")).show();
+      });
+    });
+  });
+</script>
+
+<style scoped>
+  .specs .badge {
+    font-size: 0.8rem;
+    padding: 0.5em 0.7em;
+  }
+
+  .lead {
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  ul {
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.8rem;
+    position: relative;
+  }
+
+  li::before {
+    content: "•";
+    color: #ffc107;
+    position: absolute;
+    left: -1.2rem;
+  }
+</style>
