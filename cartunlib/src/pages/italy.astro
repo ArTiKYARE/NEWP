@@ -1,0 +1,487 @@
+---
+// src/pages/italy.astro
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+
+const cars = [
+  {
+    id: "ferrari-488",
+    title: "Ferrari 488 GTB",
+    image: "/italy/ferrari-488.webp",
+    specs: ["3.9L V8", "670 л.с.", "RWD"],
+    year: 2020,
+    content: `
+      <img src="/italy/ferrari-488-detail.webp" class="img-fluid mb-4 rounded-3" alt="Ferrari 488 GTB">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 3.9L V8 Twin-Turbo</li>
+        <li>Мощность: 670 л.с. (до 800+ л.с. с тюнингом)</li>
+        <li>Разгон 0-100: 3.0 сек (2.6 сек после тюнинга)</li>
+        <li>Особенности: Карбоновый кузов, активная аэродинамика</li>
+      </ul>
+      <h2>Итальянский тюнинг</h2>
+      <p>Ferrari 488 - любимец итальянских тюнинг-ателье. Компании Novitec и Mansory предлагают:</p>
+      <ul>
+        <li>Комплекты увеличения мощности с турбонаддувом</li>
+        <li>Эксклюзивные карбоновые обвесы</li>
+        <li>Кастомные интерьеры с кожей премиум-класса</li>
+      </ul>
+    `,
+  },
+  {
+    id: "lamborghini-huracan",
+    title: "Lamborghini Huracan",
+    image: "/italy/lamborghini-huracan.webp",
+    specs: ["5.2L V10", "640 л.с.", "AWD"],
+    year: 2021,
+    content: `
+      <img src="/italy/lamborghini-huracan-detail.webp" class="img-fluid mb-4 rounded-3" alt="Lamborghini Huracan">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 5.2L V10 атмосферный</li>
+        <li>Мощность: 640 л.с. (до 900 л.с. с тюнингом)</li>
+        <li>Коробка: 7-ступенчатый робот</li>
+        <li>0-100 км/ч: 2.9 сек (2.5 сек после тюнинга)</li>
+      </ul>
+      <h2>Тюнинг-культура</h2>
+      <p>Huracan - икона итальянского суперкара. Тюнинг-ателье предлагают:</p>
+      <ul>
+        <li>Полные аэродинамические комплекты</li>
+        <li>Кастомные выхлопные системы</li>
+        <li>Эксклюзивные цветовые решения</li>
+      </ul>
+    `,
+  },
+  {
+    id: "alfa-romeo-giulia",
+    title: "Alfa Romeo Giulia Quadrifoglio",
+    image: "/italy/alfa-romeo-giulia.webp",
+    specs: ["2.9L V6", "510 л.с.", "RWD"],
+    year: 2022,
+    content: `
+      <img src="/italy/alfa-romeo-giulia-detail.webp" class="img-fluid mb-4 rounded-3" alt="Alfa Romeo Giulia">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 2.9L V6 Twin-Turbo</li>
+        <li>Мощность: 510 л.с. (до 650 л.с. с тюнингом)</li>
+        <li>Крутящий момент: 600 Нм</li>
+        <li>Тюнинг: Спортивная подвеска, карбоновые элементы</li>
+      </ul>
+      <h2>Спортивный тюнинг</h2>
+      <p>Giulia Quadrifoglio - фаворит итальянских тюнеров:</p>
+      <ul>
+        <li>Комплекты для трековых версий</li>
+        <li>Облегченные кузовные панели</li>
+        <li>Улучшенные тормозные системы</li>
+      </ul>
+    `,
+  },
+];
+---
+
+<Layout title="Итальянский тюнинг - CarTuningLibrary">
+  <Header />
+
+  <main class="container mt-5 pt-4">
+    <!-- Заголовок -->
+    <h1 class="text-center section-title mb-5 fade-in">Итальянский тюнинг</h1>
+
+    <!-- Основной контент -->
+    <section class="fade-in">
+      <div class="row g-5 align-items-stretch">
+        <div class="col-lg-6">
+          <div class="bg-gradient p-4 rounded-3 shadow h-100 d-flex flex-column">
+            <h2 class="mb-4">Философия итальянского тюнинга</h2>
+            <p class="lead flex-grow-1">
+              Итальянский тюнинг — это страсть, стиль и бескомпромиссные решения. 
+              Здесь каждая модификация — это произведение искусства, сочетающее красоту и мощность.
+            </p>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-3">
+                ➤ <strong>Страсть</strong> — эмоции превыше всего
+              </li>
+              <li class="mb-3">
+                ➤ <strong>Дизайн</strong> — безупречные формы и линии
+              </li>
+              <li class="mb-3">➤ <strong>Производительность</strong> — максимальная отдача двигателя</li>
+              <li class="mb-0">
+                ➤ <strong>Эксклюзивность</strong> — индивидуальный подход к каждому авто
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="h-100">
+            <img
+              src="/italy/italian-tuning-main.webp"
+              alt="Итальянский тюнинг - Ferrari на трассе"
+              class="img-fluid rounded-3 shadow w-100 h-100 object-fit-cover"
+              loading="lazy"
+              style="min-height: 100%"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Популярные модели с модальными окнами -->
+    <section class="my-5 fade-in">
+      <h2 class="section-title text-center mb-5">Легендарные модели</h2>
+      <div class="row g-4">
+        {
+          cars.map((car) => (
+            <div class="col-md-4 d-flex">
+              <div class="card article-card w-100">
+                <div class="card-img-container" style="height: 300px; overflow: hidden;">
+                  <img
+                    src={car.image}
+                    class="card-img-top h-100 w-100 object-fit-cover"
+                    alt={car.title}
+                    loading="lazy"
+                  />
+                </div>
+                <div class="card-body d-flex flex-column">
+                  <h3 class="card-title fw-bold">{car.title}</h3>
+                  <div class="d-flex justify-content-between mb-3">
+                    <span class="badge bg-warning text-dark">{car.year}</span>
+                    <div class="specs">
+                      {car.specs.map((spec) => (
+                        <span class="badge bg-secondary me-1">{spec}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-yellow w-100 car-modal-btn mt-auto"
+                    data-id={car.id}
+                  >
+                    Подробнее
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Модальное окно для машин -->
+    <div class="modal fade" id="carModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header border-0">
+            <h3 class="modal-title" id="carModalTitle"></h3>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="carModalContent"></div>
+          <div class="modal-footer border-0">
+            <button type="button" class="btn btn-yellow" data-bs-dismiss="modal"
+              >Закрыть</button
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Культурный блок -->
+    <section class="bg-gradient p-4 rounded-3 shadow my-5 fade-in">
+      <h2 class="mb-4">Культура итальянского тюнинга</h2>
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p class="lead">
+            Итальянский тюнинг отличается уникальным стилем и имеет свои традиции:
+          </p>
+          <ul>
+            <li>
+              <strong>Легендарные тюнинг-ателье</strong> — Novitec, Mansory, Romeo Ferraris
+            </li>
+            <li>
+              <strong>Эксклюзивные материалы</strong> — карбон, алькантара, кожа Poltrona Frau
+            </li>
+            <li>
+              <strong>Гоночные технологии</strong> — опыт Formula 1 и GT чемпионатов
+            </li>
+            <li>
+              <strong>Индивидуальный подход</strong> — создание уникальных экземпляров
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <img
+            src="/italy/monza-circuit.webp"
+            alt="Итальянские тюнингованные автомобили на трассе Монца"
+            class="img-fluid rounded-3 shadow"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- История -->
+    <section class="german-history py-5 fade-in">
+      <div class="container">
+        <h2 class="section-title text-center mb-5">
+          История итальянского тюнинга
+        </h2>
+
+        <!-- 1960-1980-е -->
+        <div class="row align-items-stretch mb-5 g-5">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/italy/60s-tuning.webp"
+                alt="Итальянский тюнинг 1960-80-х"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">1960–1980-е: Истоки страсти</h3>
+              <p>
+                Зарождение культуры тюнинга в эпоху классических спортивных автомобилей:
+              </p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>1963</strong> — Первые тюнингованные Ferrari 250 GTO
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>1974</strong> — Основание тюнинг-ателье Giannini Automobili
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>1982</strong> — Первые тюнинг-комплекты для Lancia Delta Integrale
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Факт:</h5>
+                <p class="mb-0">
+                  В 1970-х итальянцы первыми начали массово использовать карбон в тюнинге.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1990-2000-е -->
+        <div class="row align-items-stretch mb-5 g-5 flex-lg-row-reverse">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/italy/90s-tuning.webp"
+                alt="Итальянский тюнинг 1990-2000-х"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">1990–2000-е: Эра суперкаров</h3>
+              <p>
+                Расцвет тюнинга для легендарных итальянских моделей:
+              </p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>1991</strong> — Первые тюнинг-пакеты для Ferrari F40
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>1998</strong> — Основание тюнинг-ателье Novitec
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>2005</strong> — Lamborghini Murciélago от Mansory
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Технология:</h5>
+                <p class="mb-0">
+                  В 1990-х итальянцы разработали первые керамические выхлопные системы для тюнинга.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2010-е -->
+        <div class="row align-items-stretch mb-5 g-5">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/italy/2010s-tuning.webp"
+                alt="Итальянский тюнинг 2010-х"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">2010-е: Экстремальные проекты</h3>
+              <p>Рекорды мощности и эксклюзивные проекты:</p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>2012</strong> — Ferrari 458 от Novitec (700+ л.с.)
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>2015</strong> — Lamborghini Aventador от DMC (1000 л.с.)
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>2018</strong> — Alfa Romeo Giulia от Romeo Ferraris
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Рекорд:</h5>
+                <p class="mb-0">
+                  В 2017 году тюнингованный Lamborghini Huracan разогнался до 340 км/ч.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2020-е -->
+        <div class="row align-items-stretch g-5 flex-lg-row-reverse">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/italy/2020s-tuning.webp"
+                alt="Современный итальянский тюнинг"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">2020-е: Будущее тюнинга</h3>
+              <p>Новые технологии и направления:</p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>Тюнинг гибридов</strong> — Ferrari SF90 от Novitec
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Экологичные решения</strong> — биотопливные версии
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Цифровой дизайн</strong> — 3D-печать деталей
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Тренд:</h5>
+                <p class="mb-0">
+                  Итальянские тюнеры создают "зеленые" версии суперкаров с улучшенной экологичностью.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script is:inline>
+  // Данные для модальных окон
+  const carData = {
+    "ferrari-488": {
+      title: "Ferrari 488 GTB",
+      content: `
+        <img src="/italy/ferrari-488-detail.webp" class="img-fluid mb-4 rounded-3" alt="Ferrari 488 GTB">
+        <h2>Технические характеристики</h2>
+        <ul>
+          <li>Двигатель: 3.9L V8 Twin-Turbo</li>
+          <li>Мощность: 670 л.с. (до 800+ л.с. с тюнингом)</li>
+          <li>Разгон 0-100: 3.0 сек (2.6 сек после тюнинга)</li>
+          <li>Особенности: Карбоновый кузов, активная аэродинамика</li>
+        </ul>
+        <h2>Итальянский тюнинг</h2>
+        <p>Ferrari 488 - любимец итальянских тюнинг-ателье. Компании Novitec и Mansory предлагают:</p>
+        <ul>
+          <li>Комплекты увеличения мощности с турбонаддувом</li>
+          <li>Эксклюзивные карбоновые обвесы</li>
+          <li>Кастомные интерьеры с кожей премиум-класса</li>
+        </ul>
+      `
+    },
+    "lamborghini-huracan": {
+      title: "Lamborghini Huracan",
+      content: `
+        <img src="/italy/lamborghini-huracan-detail.webp" class="img-fluid mb-4 rounded-3" alt="Lamborghini Huracan">
+        <h2>Технические характеристики</h2>
+        <ul>
+          <li>Двигатель: 5.2L V10 атмосферный</li>
+          <li>Мощность: 640 л.с. (до 900 л.с. с тюнингом)</li>
+          <li>Коробка: 7-ступенчатый робот</li>
+          <li>0-100 км/ч: 2.9 сек (2.5 сек после тюнинга)</li>
+        </ul>
+        <h2>Тюнинг-культура</h2>
+        <p>Huracan - икона итальянского суперкара. Тюнинг-ателье предлагают:</p>
+        <ul>
+          <li>Полные аэродинамические комплекты</li>
+          <li>Кастомные выхлопные системы</li>
+          <li>Эксклюзивные цветовые решения</li>
+        </ul>
+      `
+    },
+    "alfa-romeo-giulia": {
+      title: "Alfa Romeo Giulia Quadrifoglio",
+      content: `
+        <img src="/italy/alfa-romeo-giulia-detail.webp" class="img-fluid mb-4 rounded-3" alt="Alfa Romeo Giulia">
+        <h2>Технические характеристики</h2>
+        <ul>
+          <li>Двигатель: 2.9L V6 Twin-Turbo</li>
+          <li>Мощность: 510 л.с. (до 650 л.с. с тюнингом)</li>
+          <li>Крутящий момент: 600 Нм</li>
+          <li>Тюнинг: Спортивная подвеска, карбоновые элементы</li>
+        </ul>
+        <h2>Спортивный тюнинг</h2>
+        <p>Giulia Quadrifoglio - фаворит итальянских тюнеров:</p>
+        <ul>
+          <li>Комплекты для трековых версий</li>
+          <li>Облегченные кузовные панели</li>
+          <li>Улучшенные тормозные системы</li>
+        </ul>
+      `
+    }
+  };
+
+  // Обработчики для модальных окон машин
+  document.querySelectorAll(".car-modal-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const carId = this.dataset.id;
+      const car = carData[carId];
+
+      document.getElementById("carModalTitle").textContent = car.title;
+      document.getElementById("carModalContent").innerHTML = car.content;
+      new bootstrap.Modal(document.getElementById("carModal")).show();
+    });
+  });
+</script>
+
+<style scoped>
+  .german-history .bg-gradient {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-left: 4px solid #e63946;
+  }
+  
+  .btn-yellow {
+    background-color: #e63946;
+    color: white;
+  }
+  
+  .btn-yellow:hover {
+    background-color: #c1121f;
+  }
+  
+  .section-title::after {
+    background: #e63946;
+  }
+</style>

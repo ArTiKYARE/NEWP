@@ -1,0 +1,487 @@
+---
+// src/pages/france.astro
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+
+const cars = [
+  {
+    id: "peugeot-205",
+    title: "Peugeot 205 GTI",
+    image: "/france/peugeot-205.webp",
+    specs: ["1.9L I4", "130 л.с.", "FWD"],
+    year: 1987,
+    content: `
+      <img src="/france/peugeot-205-detail.webp" class="img-fluid mb-4 rounded-3" alt="Peugeot 205 GTI">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 1.9L XU9JA атмосферный</li>
+        <li>Мощность: 130 л.с. (до 200+ л.с. с тюнингом)</li>
+        <li>Разгон 0-100: 8.0 сек (6.2 сек после тюнинга)</li>
+        <li>Особенности: Легкий кузов, рекордная управляемость</li>
+      </ul>
+      <h2>Французская легенда</h2>
+      <p>205 GTI - икона французского хот-хэтча. Тюнинг-ателье предлагают:</p>
+      <ul>
+        <li>Турбо-комплекты для атмосферных моторов</li>
+        <li>Облегченные кузовные панели</li>
+        <li>Спортивные подвески с регулировкой</li>
+      </ul>
+    `,
+  },
+  {
+    id: "renault-clio",
+    title: "Renault Clio RS",
+    image: "/france/renault-clio.webp",
+    specs: ["2.0L I4", "200 л.с.", "FWD"],
+    year: 2013,
+    content: `
+      <img src="/france/renault-clio-detail.webp" class="img-fluid mb-4 rounded-3" alt="Renault Clio RS">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 2.0L F4R атмосферный</li>
+        <li>Мощность: 200 л.с. (до 250+ л.с. с тюнингом)</li>
+        <li>Коробка: 6-ступенчатая механика</li>
+        <li>0-100 км/ч: 6.7 сек (5.9 сек после тюнинга)</li>
+      </ul>
+      <h2>Тюнинг-культура</h2>
+      <p>Clio RS - фаворит французских тюнеров:</p>
+      <ul>
+        <li>Комплекты для трековых версий</li>
+        <li>Кастомные выхлопные системы</li>
+        <li>Уникальные цветовые решения</li>
+      </ul>
+    `,
+  },
+  {
+    id: "bugatti-veyron",
+    title: "Bugatti Veyron",
+    image: "/france/bugatti-veyron.webp",
+    specs: ["8.0L W16", "1001 л.с.", "AWD"],
+    year: 2005,
+    content: `
+      <img src="/france/bugatti-veyron-detail.webp" class="img-fluid mb-4 rounded-3" alt="Bugatti Veyron">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 8.0L W16 Quad-Turbo</li>
+        <li>Мощность: 1001 л.с. (до 1200+ л.с. с тюнингом)</li>
+        <li>Коробка: 7-ступенчатый робот</li>
+        <li>Тюнинг: Карбоновые аэродинамические элементы</li>
+      </ul>
+      <h2>Эксклюзивный тюнинг</h2>
+      <p>Veyron - вершина французского инженерного искусства:</p>
+      <ul>
+        <li>Индивидуальные программы настройки</li>
+        <li>Ручная сборка всех компонентов</li>
+        <li>Премиальные материалы отделки</li>
+      </ul>
+    `,
+  },
+];
+---
+
+<Layout title="Французский тюнинг - CarTuningLibrary">
+  <Header />
+
+  <main class="container mt-5 pt-4">
+    <!-- Заголовок -->
+    <h1 class="text-center section-title mb-5 fade-in">Французский тюнинг</h1>
+
+    <!-- Основной контент -->
+    <section class="fade-in">
+      <div class="row g-5 align-items-stretch">
+        <div class="col-lg-6">
+          <div class="bg-gradient p-4 rounded-3 shadow h-100 d-flex flex-column">
+            <h2 class="mb-4">Философия французского тюнинга</h2>
+            <p class="lead flex-grow-1">
+              Французский тюнинг — это уникальное сочетание элегантности, инноваций и страсти. 
+              Здесь ценят индивидуальность и нестандартные решения.
+            </p>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-3">
+                ➤ <strong>Элегантность</strong> — утонченный дизайн и стиль
+              </li>
+              <li class="mb-3">
+                ➤ <strong>Инновации</strong> — передовые технические решения
+              </li>
+              <li class="mb-3">➤ <strong>Характер</strong> — неповторимый нрав автомобилей</li>
+              <li class="mb-0">
+                ➤ <strong>Индивидуальность</strong> — эксклюзивные проекты
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="h-100">
+            <img
+              src="/france/french-tuning-main.webp"
+              alt="Французский тюнинг - Peugeot на трассе"
+              class="img-fluid rounded-3 shadow w-100 h-100 object-fit-cover"
+              loading="lazy"
+              style="min-height: 100%"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Популярные модели с модальными окнами -->
+    <section class="my-5 fade-in">
+      <h2 class="section-title text-center mb-5">Легендарные модели</h2>
+      <div class="row g-4">
+        {
+          cars.map((car) => (
+            <div class="col-md-4 d-flex">
+              <div class="card article-card w-100">
+                <div class="card-img-container" style="height: 300px; overflow: hidden;">
+                  <img
+                    src={car.image}
+                    class="card-img-top h-100 w-100 object-fit-cover"
+                    alt={car.title}
+                    loading="lazy"
+                  />
+                </div>
+                <div class="card-body d-flex flex-column">
+                  <h3 class="card-title fw-bold">{car.title}</h3>
+                  <div class="d-flex justify-content-between mb-3">
+                    <span class="badge bg-warning text-dark">{car.year}</span>
+                    <div class="specs">
+                      {car.specs.map((spec) => (
+                        <span class="badge bg-secondary me-1">{spec}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-yellow w-100 car-modal-btn mt-auto"
+                    data-id={car.id}
+                  >
+                    Подробнее
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Модальное окно для машин -->
+    <div class="modal fade" id="carModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header border-0">
+            <h3 class="modal-title" id="carModalTitle"></h3>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="carModalContent"></div>
+          <div class="modal-footer border-0">
+            <button type="button" class="btn btn-yellow" data-bs-dismiss="modal"
+              >Закрыть</button
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Культурный блок -->
+    <section class="bg-gradient p-4 rounded-3 shadow my-5 fade-in">
+      <h2 class="mb-4">Культура французского тюнинга</h2>
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p class="lead">
+            Французский тюнинг отличается особым подходом и традициями:
+          </p>
+          <ul>
+            <li>
+              <strong>Уникальные тюнинг-ателье</strong> — Peugeot Sport, Renault Sport, Bugatti
+            </li>
+            <li>
+              <strong>Раллийное наследие</strong> — технологии из WRC и Dakar
+            </li>
+            <li>
+              <strong>Эксклюзивные решения</strong> — ручная сборка и настройка
+            </li>
+            <li>
+              <strong>Инновации</strong> — передовые материалы и технологии
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <img
+            src="/france/lemans-circuit.webp"
+            alt="Французские тюнингованные автомобили на трассе Ле-Ман"
+            class="img-fluid rounded-3 shadow"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- История -->
+    <section class="german-history py-5 fade-in">
+      <div class="container">
+        <h2 class="section-title text-center mb-5">
+          История французского тюнинга
+        </h2>
+
+        <!-- 1970-1990-е -->
+        <div class="row align-items-stretch mb-5 g-5">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/france/70s-tuning.webp"
+                alt="Французский тюнинг 1970-90-х"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">1970–1990-е: Зарождение традиций</h3>
+              <p>
+                Формирование французской школы тюнинга:
+              </p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>1973</strong> — Первые тюнинг-комплекты от Alpine
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>1984</strong> — Легендарный Peugeot 205 GTI
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>1991</strong> — Renault Clio Williams
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Факт:</h5>
+                <p class="mb-0">
+                  В 1980-х французы первыми начали массово тюнинговать малолитражки.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1990-2000-е -->
+        <div class="row align-items-stretch mb-5 g-5 flex-lg-row-reverse">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/france/90s-tuning.webp"
+                alt="Французский тюнинг 1990-2000-х"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">1990–2000-е: Технологический рывок</h3>
+              <p>
+                Развитие спортивного тюнинга и новых технологий:
+              </p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>1995</strong> — Первые турбо-комплекты для Peugeot
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>1999</strong> — Renault Sport Clio V6
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>2004</strong> — Bugatti Veyron 16.4
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Технология:</h5>
+                <p class="mb-0">
+                  В 1990-х французы разработали первые серийные спортивные подвески.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2010-е -->
+        <div class="row align-items-stretch mb-5 g-5">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/france/2010s-tuning.webp"
+                alt="Французский тюнинг 2010-х"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">2010-е: Спортивный расцвет</h3>
+              <p>Экстремальные проекты и рекорды:</p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>2012</strong> — Peugeot 208 T16 Pikes Peak
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>2015</strong> — Renault Clio RS 220 Trophy
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>2018</strong> — Bugatti Chiron Super Sport 300+
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Рекорд:</h5>
+                <p class="mb-0">
+                  В 2019 году Bugatti Chiron установил рекорд скорости 490 км/ч.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2020-е -->
+        <div class="row align-items-stretch g-5 flex-lg-row-reverse">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/france/2020s-tuning.webp"
+                alt="Современный французский тюнинг"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">2020-е: Электрификация и инновации</h3>
+              <p>Новые направления развития:</p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>Электрический тюнинг</strong> — Renault Zoe e-sport
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Экологичные решения</strong> — биотопливные версии
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Цифровые технологии</strong> — виртуальная настройка
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Тренд:</h5>
+                <p class="mb-0">
+                  Французские тюнеры разрабатывают "зеленый" тюнинг с улучшенной экологичностью.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script is:inline>
+  // Данные для модальных окон
+  const carData = {
+    "peugeot-205": {
+      title: "Peugeot 205 GTI",
+      content: `
+        <img src="/france/peugeot-205-detail.webp" class="img-fluid mb-4 rounded-3" alt="Peugeot 205 GTI">
+        <h2>Технические характеристики</h2>
+        <ul>
+          <li>Двигатель: 1.9L XU9JA атмосферный</li>
+          <li>Мощность: 130 л.с. (до 200+ л.с. с тюнингом)</li>
+          <li>Разгон 0-100: 8.0 сек (6.2 сек после тюнинга)</li>
+          <li>Особенности: Легкий кузов, рекордная управляемость</li>
+        </ul>
+        <h2>Французская легенда</h2>
+        <p>205 GTI - икона французского хот-хэтча. Тюнинг-ателье предлагают:</p>
+        <ul>
+          <li>Турбо-комплекты для атмосферных моторов</li>
+          <li>Облегченные кузовные панели</li>
+          <li>Спортивные подвески с регулировкой</li>
+        </ul>
+      `
+    },
+    "renault-clio": {
+      title: "Renault Clio RS",
+      content: `
+        <img src="/france/renault-clio-detail.webp" class="img-fluid mb-4 rounded-3" alt="Renault Clio RS">
+        <h2>Технические характеристики</h2>
+        <ul>
+          <li>Двигатель: 2.0L F4R атмосферный</li>
+          <li>Мощность: 200 л.с. (до 250+ л.с. с тюнингом)</li>
+          <li>Коробка: 6-ступенчатая механика</li>
+          <li>0-100 км/ч: 6.7 сек (5.9 сек после тюнинга)</li>
+        </ul>
+        <h2>Тюнинг-культура</h2>
+        <p>Clio RS - фаворит французских тюнеров:</p>
+        <ul>
+          <li>Комплекты для трековых версий</li>
+          <li>Кастомные выхлопные системы</li>
+          <li>Уникальные цветовые решения</li>
+        </ul>
+      `
+    },
+    "bugatti-veyron": {
+      title: "Bugatti Veyron",
+      content: `
+        <img src="/france/bugatti-veyron-detail.webp" class="img-fluid mb-4 rounded-3" alt="Bugatti Veyron">
+        <h2>Технические характеристики</h2>
+        <ul>
+          <li>Двигатель: 8.0L W16 Quad-Turbo</li>
+          <li>Мощность: 1001 л.с. (до 1200+ л.с. с тюнингом)</li>
+          <li>Коробка: 7-ступенчатый робот</li>
+          <li>Тюнинг: Карбоновые аэродинамические элементы</li>
+        </ul>
+        <h2>Эксклюзивный тюнинг</h2>
+        <p>Veyron - вершина французского инженерного искусства:</p>
+        <ul>
+          <li>Индивидуальные программы настройки</li>
+          <li>Ручная сборка всех компонентов</li>
+          <li>Премиальные материалы отделки</li>
+        </ul>
+      `
+    }
+  };
+
+  // Обработчики для модальных окон машин
+  document.querySelectorAll(".car-modal-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const carId = this.dataset.id;
+      const car = carData[carId];
+
+      document.getElementById("carModalTitle").textContent = car.title;
+      document.getElementById("carModalContent").innerHTML = car.content;
+      new bootstrap.Modal(document.getElementById("carModal")).show();
+    });
+  });
+</script>
+
+<style scoped>
+  .german-history .bg-gradient {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-left: 4px solid #e63946;
+  }
+  
+  .btn-yellow {
+    background-color: #e63946;
+    color: white;
+  }
+  
+  .btn-yellow:hover {
+    background-color: #c1121f;
+  }
+  
+  .section-title::after {
+    background: #e63946;
+  }
+</style>

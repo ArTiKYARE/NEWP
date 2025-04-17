@@ -1,0 +1,449 @@
+---
+// src/pages/korea.astro
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+
+const cars = [
+  {
+    id: "hyundai-veloster-n",
+    title: "Hyundai Veloster N",
+    image: "/korea/veloster-n.webp",
+    specs: ["2.0L Turbo", "275 л.с.", "FWD"],
+    year: 2022,
+    content: `
+      <img src="/korea/veloster-n-detail.webp" class="img-fluid mb-4 rounded-3" alt="Hyundai Veloster N">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 2.0L Theta II Turbo</li>
+        <li>Мощность: 275 л.с. (до 350 л.с. с тюнингом)</li>
+        <li>Разгон 0-100: 5.6 сек (4.9 сек после тюнинга)</li>
+        <li>Особенности: Электронный дифференциал, активный звук выхлопа</li>
+      </ul>
+      <h2>Культура тюнинга</h2>
+      <p>Veloster N стал культовым для корейских тюнеров благодаря:</p>
+      <ul>
+        <li>Доступной цене для сегмента "hot hatch"</li>
+        <li>Большому выбору заводских опций от N Performance</li>
+        <li>Активному комьюнити в Сеуле и Пусанe</li>
+      </ul>
+    `,
+  },
+  {
+    id: "genesis-g70",
+    title: "Genesis G70",
+    image: "/korea/genesis-g70.webp",
+    specs: ["3.3L V6", "370 л.с.", "RWD/AWD"],
+    year: 2023,
+    content: `
+      <img src="/korea/genesis-g70-detail.webp" class="img-fluid mb-4 rounded-3" alt="Genesis G70">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 3.3L Lambda II V6 Twin-Turbo</li>
+        <li>Мощность: 370 л.с. (до 450+ л.с.)</li>
+        <li>Крутящий момент: 510 Нм</li>
+        <li>0-100 км/ч: 4.7 сек</li>
+      </ul>
+      <h2>Премиум тюнинг</h2>
+      <p>G70 - флагман корейского тюнинга с уникальными решениями:</p>
+      <ul>
+        <li>Кастомные обвесы от Korean Custom Works</li>
+        <li>Эксклюзивные 20" диски ADVAN</li>
+        <li>Тюнингованные версии для дрифта</li>
+      </ul>
+    `,
+  },
+  {
+    id: "kia-stinger",
+    title: "Kia Stinger",
+    image: "/korea/kia-stinger.webp",
+    specs: ["2.5L Turbo", "304 л.с.", "RWD"],
+    year: 2021,
+    content: `
+      <img src="/korea/kia-stinger-detail.webp" class="img-fluid mb-4 rounded-3" alt="Kia Stinger">
+      <h2>Технические характеристики</h2>
+      <ul>
+        <li>Двигатель: 2.5L Smartstream G2.5 T-GDI</li>
+        <li>Мощность: 304 л.с. (Stage 1 - 350+ л.с.)</li>
+        <li>Коробка: 8-ст. автомат с paddle shift</li>
+        <li>Особенности: LSD дифференциал</li>
+      </ul>
+      <h2>Популярные модификации</h2>
+      <p>Stinger GT-line чаще всего подвергается:</p>
+      <ul>
+        <li>Чип-тюнингу через OBD-порт</li>
+        <li>Установке кит-комплектов от LAP3</li>
+        <li>Созданию "widebody" версий</li>
+      </ul>
+    `,
+  },
+];
+---
+
+<Layout title="Южнокорейский тюнинг - CarTuningLibrary">
+  <Header />
+
+  <main class="container mt-5 pt-4">
+    <!-- Заголовок -->
+    <h1 class="text-center section-title mb-5 fade-in">Корейский тюнинг</h1>
+
+    <!-- Основной контент -->
+    <section class="fade-in">
+      <div class="row g-5 align-items-stretch">
+        <div class="col-lg-6">
+          <div class="bg-gradient p-4 rounded-3 shadow h-100 d-flex flex-column">
+            <h2 class="mb-4">Философия корейского тюнинга</h2>
+            <p class="lead flex-grow-1">
+              Корейский тюнинг сочетает высокие технологии, доступность и 
+              уникальный стиль. Здесь ценят инновации и комьюнити.
+            </p>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-3">
+                ➤ <strong>Технологичность</strong> — чип-тюнинг и цифровые решения
+              </li>
+              <li class="mb-3">
+                ➤ <strong>Доступность</strong> — разумные цены на комплектующие
+              </li>
+              <li class="mb-3">➤ <strong>Стиль</strong> — агрессивный дизайн с элементами K-pop культуры</li>
+              <li class="mb-0">
+                ➤ <strong>Комьюнити</strong> — массовые встречи и фестивали
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="h-100">
+            <img
+              src="/korea/korean-tuning-main.webp"
+              alt="Корейский тюнинг - модифицированные Hyundai и Kia в Сеуле"
+              class="img-fluid rounded-3 shadow w-100 h-100 object-fit-cover"
+              loading="lazy"
+              style="min-height: 100%"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Популярные модели -->
+    <section class="my-5 fade-in">
+      <h2 class="section-title text-center mb-5">Топовые модели</h2>
+      <div class="row g-4">
+        {
+          cars.map((car) => (
+            <div class="col-md-4 d-flex">
+              <div class="card article-card w-100">
+                <div class="card-img-container" style="height: 300px; overflow: hidden;">
+                  <img
+                    src={car.image}
+                    class="card-img-top h-100 w-100 object-fit-cover"
+                    alt={car.title}
+                    loading="lazy"
+                  />
+                </div>
+                <div class="card-body d-flex flex-column">
+                  <h3 class="card-title fw-bold">{car.title}</h3>
+                  <div class="d-flex justify-content-between mb-3">
+                    <span class="badge bg-warning text-dark">{car.year}</span>
+                    <div class="specs">
+                      {car.specs.map((spec) => (
+                        <span class="badge bg-secondary me-1">{spec}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-yellow w-100 car-modal-btn mt-auto"
+                    data-id={car.id}
+                  >
+                    Подробнее
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Модальное окно -->
+    <div class="modal fade" id="carModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header border-0">
+            <h3 class="modal-title" id="carModalTitle"></h3>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="carModalContent"></div>
+          <div class="modal-footer border-0">
+            <button type="button" class="btn btn-yellow" data-bs-dismiss="modal"
+              >Закрыть</button
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Культурный блок -->
+    <section class="bg-gradient p-4 rounded-3 shadow my-5 fade-in">
+      <h2 class="mb-4">Уникальные черты корейского тюнинга</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="lead">
+            Корейская тюнинг-культура отличается от западных аналогов:
+          </p>
+          <ul>
+            <li>
+              <strong>K-Style</strong> — неоновые акценты и LED-подсветка
+            </li>
+            <li>
+              <strong>Гаражные тюнеры</strong> — активное любительское движение
+            </li>
+            <li>
+              <strong>Фестивали</strong> — Seoul Auto Salon и Busan Motor Show
+            </li>
+            <li>
+              <strong>Киберспорт</strong> — виртуальный тюнинг в играх как Forza
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <img
+            src="/korea/seoul-auto-salon.webp"
+            alt="Фестиваль тюнинга в Сеуле"
+            class="img-fluid rounded-3"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- История -->
+    <section class="korean-history py-5 fade-in">
+      <div class="container">
+        <h2 class="section-title text-center mb-5">
+          Развитие корейского тюнинга
+        </h2>
+
+        <!-- 1990-2000-е -->
+        <div class="row align-items-stretch mb-5 g-5">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/korea/90s-tuning.webp"
+                alt="Корейский тюнинг 1990-2000-х"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">1990–2000-е: Начало движения</h3>
+              <p>
+                Первые шаги корейского тюнинг-сообщества:
+              </p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>1995</strong> — Первые модификации Hyundai Scoupe
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>1999</strong> — Появление тюнинг-ателье в Сеуле
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>2006</strong> — Первый Seoul Auto Salon
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Факт:</h5>
+                <p class="mb-0">
+                  В 2000-х корейцы переняли многие технологии у японских тюнеров.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2010-е -->
+        <div class="row align-items-stretch mb-5 g-5 flex-lg-row-reverse">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/korea/2010s-tuning.webp"
+                alt="Корейский тюнинг 2010-х"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">2010-е: Прорыв на мировой рынок</h3>
+              <p>
+                Глобализация корейского автопрома повлияла на тюнинг:
+              </p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>2012</strong> — Genesis Coupe как платформа для дрифта
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>2015</strong> — Первые международные победы на Time Attack
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>2017</strong> — Запуск N Performance от Hyundai
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Технология:</h5>
+                <p class="mb-0">
+                  Корейские тюнеры разработали собственные чип-тюнинг решения.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2020-е -->
+        <div class="row align-items-stretch g-5">
+          <div class="col-lg-6 d-flex">
+            <div class="article-card w-100">
+              <img
+                src="/korea/2020s-tuning.webp"
+                alt="Современный корейский тюнинг"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+                style="min-height: 350px;"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6 d-flex">
+            <div class="bg-gradient p-4 rounded-3 shadow w-100 d-flex flex-column">
+              <h3 class="mb-4">2020-е: Кибер-тюнинг и электрификация</h3>
+              <p>Новые тенденции:</p>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-3">
+                  ➤ <strong>Виртуальный тюнинг</strong> — 3D-визуализация перед реализацией
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Электрические модели</strong> — тюнинг Hyundai Ioniq 5
+                </li>
+                <li class="mb-3">
+                  ➤ <strong>Гибридные решения</strong> — модификации Kia K5 GT-line
+                </li>
+              </ul>
+              <div class="mt-auto p-3 bg-dark text-light rounded">
+                <h5 class="text-warning">Тренд:</h5>
+                <p class="mb-0">
+                  Популяризация корейского тюнинга через социальные сети и киберспорт.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script is:inline>
+  // Данные для модальных окон
+  const carData = {
+    "hyundai-veloster-n": {
+      title: "Hyundai Veloster N",
+      content: `
+        <img src="/korea/veloster-n-detail.webp" class="img-fluid mb-4 rounded-3" alt="Hyundai Veloster N">
+        <h2>Технические характеристики</h2>
+        <ul>
+          <li>Двигатель: 2.0L Theta II Turbo</li>
+          <li>Мощность: 275 л.с. (до 350 л.с. с тюнингом)</li>
+          <li>Разгон 0-100: 5.6 сек (4.9 сек после тюнинга)</li>
+          <li>Особенности: Электронный дифференциал, активный звук выхлопа</li>
+        </ul>
+        <h2>Культура тюнинга</h2>
+        <p>Veloster N стал культовым для корейских тюнеров благодаря:</p>
+        <ul>
+          <li>Доступной цене для сегмента "hot hatch"</li>
+          <li>Большому выбору заводских опций от N Performance</li>
+          <li>Активному комьюнити в Сеуле и Пусанe</li>
+        </ul>
+      `
+    },
+    "genesis-g70": {
+      title: "Genesis G70",
+      content: `
+        <img src="/korea/genesis-g70-detail.webp" class="img-fluid mb-4 rounded-3" alt="Genesis G70">
+        <h2>Технические характеристики</h2>
+        <ul>
+          <li>Двигатель: 3.3L Lambda II V6 Twin-Turbo</li>
+          <li>Мощность: 370 л.с. (до 450+ л.с.)</li>
+          <li>Крутящий момент: 510 Нм</li>
+          <li>0-100 км/ч: 4.7 сек</li>
+        </ul>
+        <h2>Премиум тюнинг</h2>
+        <p>G70 - флагман корейского тюнинга с уникальными решениями:</p>
+        <ul>
+          <li>Кастомные обвесы от Korean Custom Works</li>
+          <li>Эксклюзивные 20" диски ADVAN</li>
+          <li>Тюнингованные версии для дрифта</li>
+        </ul>
+      `
+    },
+    "kia-stinger": {
+      title: "Kia Stinger",
+      content: `
+        <img src="/korea/kia-stinger-detail.webp" class="img-fluid mb-4 rounded-3" alt="Kia Stinger">
+        <h2>Технические характеристики</h2>
+        <ul>
+          <li>Двигатель: 2.5L Smartstream G2.5 T-GDI</li>
+          <li>Мощность: 304 л.с. (Stage 1 - 350+ л.с.)</li>
+          <li>Коробка: 8-ст. автомат с paddle shift</li>
+          <li>Особенности: LSD дифференциал</li>
+        </ul>
+        <h2>Популярные модификации</h2>
+        <p>Stinger GT-line чаще всего подвергается:</p>
+        <ul>
+          <li>Чип-тюнингу через OBD-порт</li>
+          <li>Установке кит-комплектов от LAP3</li>
+          <li>Созданию "widebody" версий</li>
+        </ul>
+      `
+    }
+  };
+
+  // Обработчики модальных окон
+  document.querySelectorAll(".car-modal-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const carId = this.dataset.id;
+      const car = carData[carId];
+
+      document.getElementById("carModalTitle").textContent = car.title;
+      document.getElementById("carModalContent").innerHTML = car.content;
+      new bootstrap.Modal(document.getElementById("carModal")).show();
+    });
+  });
+</script>
+
+<style scoped>
+  .korean-history .bg-gradient {
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    border-left: 4px solid #ff4d4d;
+  }
+  
+  .btn-yellow {
+    background-color: #ff4d4d;
+    color: white;
+  }
+  
+  .btn-yellow:hover {
+    background-color: #e60000;
+  }
+  
+  .section-title::after {
+    background: #ff4d4d;
+  }
+</style>
